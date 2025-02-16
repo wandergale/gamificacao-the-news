@@ -1,11 +1,13 @@
 import { Router } from "express";
 
-import { handleWebhook } from "../controllers/WebhookController";
+import { handleWebhook } from "../controllers/webhookController";
 import { login } from "../controllers/authController";
+import { getDashboard } from "../controllers/dashboardController";
 
 const router = Router();
 
-router.get("/login", login);
 router.post("/webhook", handleWebhook);
+router.get("/login", login);
+router.get("/dashboard", getDashboard);
 
 export default router;
