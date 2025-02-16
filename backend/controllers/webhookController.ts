@@ -38,7 +38,7 @@ export const handleWebhook = async (
     }
 
     await pool.query(
-      `INSERT INTO reads (user_id, newsletter_id, opened_at, utm_source, utm_medium, utm_campaigm, utm_channel) ` +
+      `INSERT INTO reads (user_id, newsletter_id, opened_at, utm_source, utm_medium, utm_campaign, utm_channel) ` +
         `VALUES ((SELECT id FROM users WHERE email = $1), $2, $3, $4, $5, $6, $7
         )`,
       [
