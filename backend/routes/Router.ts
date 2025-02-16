@@ -1,11 +1,11 @@
-import express from "express";
+import { Router } from "express";
 
-import { handleWebhook } from "../controllers/webhookController";
+import { handleWebhook } from "../controllers/WebhookController";
+import { login } from "../controllers/authController";
 
-const router = express();
+const router = Router();
 
-router.use(express.json());
-
+router.get("/login", login);
 router.post("/webhook", handleWebhook);
 
 export default router;

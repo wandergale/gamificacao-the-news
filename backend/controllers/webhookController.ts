@@ -27,22 +27,34 @@ export const handleWebhook = async (
   } = req.body;
 
   try {
-    const result = await pool.query(
-      `SELECT * FROM users WHERE email = ${email}`
-    );
-    console.log(email);
+    console.log("EMAIL RECEBIDO: ", email);
+    const result = await pool.query(`SELECT * FROM users WHERE email = $1`, [
+      email,
+    ]);
+
     if (result.rows.length === 0) {
-      console.log("nao exite ninguem");
-      await pool.query(`INSERT INTO users (email) VALUES (${email})`);
+      console.log("Usuário não encontrado");
+      await pool.query(`INSERT INTO users (email) VALUES ($1)`, [email]);
     }
 
     await pool.query(
       `INSERT INTO reads (user_id, newsletter_id, opened_at, utm_source, utm_medium, utm_campaigm, utm_channel) ` +
-        `VALUES ((SELECT id FROM users WHERE email = ${email}), ${newsletter_id}, ${opened_at}, ${utm_source}, ${utm_medium}, ${utm_campaign}, ${utm_channel})`
+        `VALUES ((SELECT id FROM users WHERE email = $1), $2, $3, $4, $5, $6, $7
+        )`,
+      [
+        email,
+        newsletter_id,
+        opened_at,
+        utm_source,
+        utm_medium,
+        utm_campaign,
+        utm_channel,
+      ]
     );
 
     const streakResult = await pool.query(
-      `SELECT * FROM streaks WHERE user_id = (SELECT id FROM users WHERE email = ${email})`
+      `SELECT * FROM streaks WHERE user_id = (SELECT id FROM users WHERE email = $1)`,
+      [email]
     );
 
     if (streakResult.rows.length > 0) {
@@ -57,13 +69,13 @@ export const handleWebhook = async (
         await pool.query(
           `UPDATE streaks SET current_streak = ${
             currentStreak + 1
-          } WHERE user_id = (SELECT id FROM users WHERE email = ${email})`
+          } WHERE user_id = (SELECT id FROM users WHERE email = $1)`,
+          [email]
         );
       } else {
         await pool.query(
-          `INSERT INTO streaks (user_id, current_streak, last_streak_date) VALUES ((SELECT id FROM users WHERE email = ${email}), 1, ${
-            opened_at.split("T")[0]
-          })`
+          `INSERT INTO streaks (user_id, current_streak, last_streak_date) VALUES ((SELECT id FROM users WHERE email = $1), 1, $2)`,
+          [email, opened_at.split("T")[0]]
         );
       }
     }
