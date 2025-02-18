@@ -17,6 +17,7 @@
   font-weight: 100;
   transition: 0.5s;
   margin-right: 10px;
+  flex-grow: 1;
 }
 
 .logo a {
@@ -100,6 +101,12 @@ button {
   background-color: #ffce04;
 }
 
+.hamb_menu {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .hamb_menu img {
   cursor: pointer;
   text-align: center;
@@ -108,5 +115,116 @@ button {
 
   &:hover {
     transform: scale(1.2);
+  }
+}
+
+@media (max-width: 992px) {
+  .logo p,
+  .anuncie {
+    display: none;
+  }
+
+  .desktop {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .start {
+    margin-left: -40px;
+  }
+
+  .logo_img {
+    margin-right: -25px;
+  }
+
+  .logo a:hover {
+    transform: none;
+    background-color: transparent;
+    margin: 0;
+  }
+
+  .hamb_menu img {
+    margin-right: -40px;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .login button {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .login button,
+  .sub button {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 580px) {
+  .desktop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 10px;
+    gap: 0;
+  }
+
+  .start,
+  .end {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: auto;
+  }
+  .end {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .end li {
+    margin: 2.5px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    flex-grow: 0;
+  }
+
+  .logo a {
+    margin-right: 30px;
+  }
+
+  .logo img {
+    position: absolute;
+    width: 35px;
+    margin-right: 0 5px 0 0;
+  }
+
+  .login button,
+  .sub button {
+    width: auto;
+    padding: 6px 12px;
+    margin: 0;
+  }
+
+  .hamb_menu {
+    width: 25px;
+  }
+
+  .logo a:hover {
+    transform: none;
+    background-color: transparent;
+    margin: 0;
   }
 }

@@ -13,7 +13,7 @@ const Navbar = () => {
                 src="https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/publication/logo/ce78b549-5923-439b-be24-3f24c454bc12/ICONE_the_news_com_AMARELO.png"
                 alt="thenews logo"
               />
-              the news
+              <p>the news</p>
             </a>
           </li>
           <li className={style.anuncie}>
