@@ -1,0 +1,112 @@
+.desktop {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.start,
+.end {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.2em;
+}
+.logo {
+  font-weight: 100;
+  transition: 0.5s;
+  margin-right: 10px;
+}
+
+.logo a {
+  height: 55px;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+  padding: 0 10px;
+  border-radius: 10px;
+
+  &:hover {
+    transform: scale(1.1);
+    margin-right: 15px;
+    background-color: #f2f2f2;
+  }
+}
+
+.logo img {
+  margin-right: 10px;
+  width: 40px;
+  border-radius: 5px;
+}
+
+.anuncie {
+  font-weight: 100;
+  margin-right: 90px;
+}
+
+.anuncie a {
+  transition: 0.5s;
+  height: 35px;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+
+.anuncie:hover a {
+  transform: scale(1.1);
+  margin-left: 15px;
+  background-color: #f2f2f2;
+}
+
+li:first-child {
+  flex-direction: start;
+  margin: 0 0 0 50px;
+}
+
+.end {
+  margin-right: 50px;
+}
+
+.end li {
+  margin-right: 20px;
+}
+
+button {
+  font-weight: 900;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.login button {
+  background-color: #ffffff;
+  border: 1px solid #b9b8b8;
+}
+
+.sub button {
+  border: 1px solid #ffce04;
+  background-color: #ffce04;
+}
+
+.hamb_menu img {
+  cursor: pointer;
+  text-align: center;
+  transition: 0.5s;
+  width: 30px;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
