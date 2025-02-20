@@ -15,10 +15,9 @@ const Home = () => {
     fetch(`https://the-news-2a20.onrender.com/create/?${email}}`)
       .then((res) => {
         console.log(res.status);
+        setEmail("");
       })
       .catch((err) => console.error(err));
-
-    setEmail("");
   };
 
   return (
