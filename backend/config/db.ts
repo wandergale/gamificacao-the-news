@@ -48,6 +48,16 @@ const createTables = async () => {
       );
     `);
 
+    await client.query(`
+      CREATE VIEW IF NOT EXISTS engagement_metrics AS
+      SELECT 
+        COUNT(DISTINCT user_id) AS total_usuarios_ativos,
+        AVG(current_streak) AS media_streaks,
+        COUNT(*) FILTER (WHERE current_streak > 1) AS usuarios_com_streak
+      FROM streaks;
+    `);
+    console.log("View engagement_metrics verificada/criada.");
+
     console.log("Tabelas criadas/verificadas com sucesso!");
   } catch (error) {
     console.error("Erro ao criar tabelas:", error);
