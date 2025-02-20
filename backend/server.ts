@@ -12,9 +12,11 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://the-news-bice.vercel.app/",
+      "https://the-news-bice.vercel.app",
       "https://the-news-2a20.onrender.com",
     ],
+    methods: "GET,POST,PUT,DELETE",
+    allowedHeaders: "Content-Type,Authorization",
   })
 );
 app.use(express.json());
