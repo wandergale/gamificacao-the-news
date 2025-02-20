@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { getUsers } from "../controllers/userController";
+import { subscribe } from "../controllers/userController";
 import { processWebhook } from "../controllers/webhookController";
 
 const router = Router();
 
-router.get("/users", getUsers);
+router.get("/create", subscribe);
 router.get("/webhook", processWebhook);
 
 export default router;
