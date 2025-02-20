@@ -60,9 +60,9 @@ export const webhookHandler = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "email and id required" });
     }
 
-    // console.log(`received: Email = ${email}, ID = ${id}`);
+    console.log(`received: Email = ${email}`);
 
-    return res.status(200).json({ message: "Webhook received" });
+    return res.status(200).json({ email: email });
   } catch (error) {
     console.error("webhook error:", error);
     return res.status(500).json({ message: "Internal error" });
