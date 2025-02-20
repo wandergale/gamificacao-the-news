@@ -31,11 +31,11 @@ const createTables = async () => {
 
       CREATE TABLE IF NOT EXISTS streaks (
         id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        user_id INTEGER UNIQUE REFERENCES users(id) ON DELETE CASCADE,
         current_streak INTEGER DEFAULT 0,
         longest_streak INTEGER DEFAULT 0,
         last_read TIMESTAMP
-      );
+      );  
 
       CREATE TABLE IF NOT EXISTS utm_data (
         id SERIAL PRIMARY KEY,
