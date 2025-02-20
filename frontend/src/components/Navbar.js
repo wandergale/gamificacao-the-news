@@ -1,7 +1,7 @@
 import style from "./Navbar.module.css";
 import menu from "../assets/images/menu.svg";
 
-const Navbar = () => {
+const Navbar = ({ onLoginClick }) => {
   return (
     <nav>
       <ul className={style.desktop}>
@@ -23,7 +23,7 @@ const Navbar = () => {
 
         <div className={style.end}>
           <li className={style.login}>
-            <button>Fazer login</button>
+            <button onClick={onLoginClick}>Fazer login</button>
           </li>
           <li className={style.sub}>
             <button>Subscribe</button>
