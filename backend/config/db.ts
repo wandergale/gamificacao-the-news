@@ -46,9 +46,7 @@ const createTables = async () => {
         utm_campaign TEXT,
         utm_channel TEXT
       );
-    `);
 
-    await client.query(`
       CREATE VIEW IF NOT EXISTS engagement_metrics AS
       SELECT 
         COUNT(DISTINCT user_id) AS total_usuarios_ativos,
