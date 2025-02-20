@@ -12,7 +12,7 @@ const Home = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`https://the-news-2a20.onrender.com/create/?${email}}`)
+    fetch(`https://the-news-2a20.onrender.com/create/?${email}`)
       .then((res) => {
         console.log(res.status);
         setEmail("");
