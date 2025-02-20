@@ -9,7 +9,9 @@ const PORT = process.env.PORT;
 
 const app = express();
 
-app.use(cors({ origin: "https://the-news-2a20.onrender.com" }));
+app.use(
+  cors({ origin: "https://the-news-2a20.onrender.com", credentials: true })
+);
 app.use(express.json());
 
 app.use(routes);
