@@ -47,7 +47,7 @@ const createTables = async () => {
         utm_channel TEXT
       );
 
-      CREATE VIEW IF NOT EXISTS engagement_metrics AS
+      CREATE VIEW engagement_metrics AS
       SELECT 
         COUNT(DISTINCT user_id) AS total_usuarios_ativos,
         AVG(current_streak) AS media_streaks,
