@@ -32,8 +32,6 @@
   border-radius: 10px;
 
   &:hover {
-    transform: scale(1.1);
-    margin-right: 15px;
     background-color: #f2f2f2;
   }
 }
@@ -74,8 +72,6 @@
 }
 
 .anuncie:hover a {
-  transform: scale(1.1);
-  margin-left: 15px;
   background-color: #f2f2f2;
 }
 
@@ -97,10 +93,6 @@ button {
   cursor: pointer;
   border-radius: 10px;
   transition: 0.5s;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 }
 
 .login button,
@@ -113,6 +105,10 @@ button {
   background-color: #f9fafb;
   border: 1px solid #e0dfdf;
   box-shadow: 0px 1px 2px #ccc;
+
+  &:hover {
+    background-color: #f2f2f2;
+  }
 }
 
 .sub button {
@@ -131,10 +127,6 @@ button {
   text-align: center;
   transition: 0.5s;
   width: 30px;
-
-  &:hover {
-    transform: scale(1.2);
-  }
 }
 
 @media (max-width: 992px) {
@@ -158,7 +150,6 @@ button {
   }
 
   .anuncie:hover a {
-    transform: none;
     margin: 0;
   }
 
@@ -176,17 +167,8 @@ button {
   }
 
   .logo a:hover {
-    transform: none;
     background-color: transparent;
     margin: 0;
-  }
-
-  .hamb_menu img {
-    margin-right: -40px;
-
-    &:hover {
-      transform: none;
-    }
   }
 
   .login button {
@@ -204,11 +186,6 @@ button {
   .login button,
   .sub button {
     padding: 7px 15px 7px 15px;
-  }
-
-  .login button:hover,
-  .sub button:hover {
-    transform: none;
   }
 }
 
@@ -233,7 +210,7 @@ button {
     gap: 5px;
     width: auto;
   }
-  
+
   .end {
     display: flex;
     align-items: center;
@@ -273,7 +250,6 @@ button {
   }
 
   .logo a:hover {
-    transform: none;
     background-color: transparent;
     margin: 0;
   }
