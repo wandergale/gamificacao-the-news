@@ -53,7 +53,7 @@ const createTables = async () => {
       CREATE VIEW engagement_metrics AS
       SELECT 
         COUNT(DISTINCT user_id) AS total_usuarios_ativos,
-        AVG(current_streak) AS media_streaks,
+        CONVERT(DECIMAL(10, 2), ROUND(AVG(current_streak))) AS media_streaks,
         COUNT(*) FILTER (WHERE current_streak > 1) AS usuarios_com_streak
       FROM streaks;
     `);
