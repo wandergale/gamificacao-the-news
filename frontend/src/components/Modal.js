@@ -2,6 +2,7 @@ import styles from "./Modal.module.css";
 import close from "../assets/images/close.svg";
 
 import { useState } from "react";
+import { VerifyLogin } from "../pages/Dashboard/User/VerifyLogin";
 
 const Modal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
@@ -23,8 +24,25 @@ const Modal = ({ isOpen, onClose }) => {
       const data = await res.json();
       setMessage(data.message);
       setEmail("");
+      handleLogin();
     } catch (error) {
       console.error("Error on send email: ", error);
+    }
+  };
+
+  const handleLogin = async () => {
+    const res = await fetch(`https://the-news-2a20.onrender.com/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    const data = await res.json();
+
+    if (data.token) {
+      window.location.href = `/verify-login?token=${data.token}`;
+    } else {
+      alert("Erro ao fazer login");
     }
   };
 
