@@ -6,7 +6,7 @@ import "./App.css";
 
 // pages
 import Home from "./pages/Home/Home";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import UserDashboard from "./pages/Dashboard/User/UserDashboard";
 import { ProtectedRoute } from "./pages/Dashboard/User/VerifyLogin";
 
 function App() {
@@ -15,11 +15,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
