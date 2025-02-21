@@ -27,7 +27,7 @@ const UserDashboard = () => {
         })
         .catch(console.error);
     }
-  }, [token]);
+  }, []);
 
   console.log(user);
   if (!user) {
