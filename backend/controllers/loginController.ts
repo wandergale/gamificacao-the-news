@@ -54,7 +54,7 @@ export const auth = async (req: Request, res: Response) => {
 
     const decoded = jwt.verify(token, secret) as JwtPayload;
     console.log(decoded)
-    const user = await pool.query("SELEC * FROM users WHERE id = $1", [
+    const user = await pool.query("SELECT * FROM users WHERE id = $1", [
       decoded.userId,
     ]);
 
