@@ -63,7 +63,7 @@
 }
 
 .form label {
-    margin-bottom: 2px;
+  margin-bottom: 2px;
   text-align: start;
   margin-left: 2px;
   font-size: 0.8em;
@@ -82,6 +82,12 @@
   text-align: end;
   font-size: 0.8em;
   text-decoration: none;
+}
+
+.msg {
+  transition: .5s;
+  font-size: 0.8em;
+  background-color: #69ff3b;
 }
 
 .btn {
