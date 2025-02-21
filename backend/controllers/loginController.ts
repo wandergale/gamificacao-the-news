@@ -33,7 +33,7 @@ export const sendLoginLink = async (req: Request, res: Response) => {
     console.log(
       `Link de login enviado: https://the-news-bice.vercel.app/login?token=${token}`
     );
-    res.json({ message: "Email send" });
+    res.json({ message: "Email send", token: token });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error on send link login" });
