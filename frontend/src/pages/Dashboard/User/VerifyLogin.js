@@ -43,3 +43,8 @@ export const VerifyLogin = () => {
 
   return <p>Verificando login...</p>;
 };
+
+export const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" />;
+};
