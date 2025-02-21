@@ -6,6 +6,7 @@ export const VerifyLogin = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    console.log("PARAMS: ", params)
     const token = params.get("token");
 
     if (token) {
@@ -17,6 +18,7 @@ export const VerifyLogin = () => {
   }, []);
 
   const verifyToken = async (token) => {
+    console.log(token)
     try {
       const res = await fetch("https://the-news-2a20.onrender.com/auth", {
         method: "GET",
