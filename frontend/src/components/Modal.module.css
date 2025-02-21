@@ -85,9 +85,7 @@
 }
 
 .msg {
-  transition: .5s;
   font-size: 0.8em;
-  background-color: #69ff3b;
 }
 
 .btn {
