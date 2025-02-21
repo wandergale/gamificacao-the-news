@@ -38,7 +38,7 @@ const Modal = ({ isOpen, onClose }) => {
     });
 
     const data = await res.json();
-    consoele.log(data.token);
+    console.log(data.token);
 
     if (data.token) {
       window.location.href = `/verify-login?token=${data.token}`;
