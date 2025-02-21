@@ -52,9 +52,12 @@ export const auth = async (req: Request, res: Response) => {
     }
 
     const decoded = jwt.verify(token, secret) as JwtPayload;
+    console.log(decoded)
     const user = await pool.query("SELEC * FROM users WHERE id = $1", [
       decoded.userId,
     ]);
+
+    console.log("USER: ", user)
 
     if (user.rows.length === 0) {
       return res.status(404).json({ error: "User not found" });

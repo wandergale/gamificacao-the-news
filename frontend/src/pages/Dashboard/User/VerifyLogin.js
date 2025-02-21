@@ -18,7 +18,6 @@ export const VerifyLogin = () => {
   }, []);
 
   const verifyToken = async (token) => {
-    console.log(token);
     try {
       const res = await fetch(
         `https://the-news-2a20.onrender.com/auth?token=${token}`,
@@ -30,11 +29,6 @@ export const VerifyLogin = () => {
           },
         }
       );
-
-      console.log(res);
-
-      const data = await res.json();
-      console.log("DATA: ", data);
 
       if (res.ok) {
         localStorage.setItem("authToken", token);
