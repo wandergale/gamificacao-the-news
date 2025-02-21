@@ -25,7 +25,7 @@ export const processWebhook = async (req: Request, res: Response) => {
        ON CONFLICT (user_id) DO UPDATE
        SET current_streak = 
          CASE 
-           WHEN streaks.last_read IS NULL OR streaks.last_read < NOW() - INTERVAL '1 second' 
+           WHEN streaks.last_read IS NULL OR streaks.last_read < NOW() - INTERVAL '1 day' 
            THEN streaks.current_streak + 1
            ELSE 1
          END,
