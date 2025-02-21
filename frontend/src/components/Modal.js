@@ -22,6 +22,7 @@ const Modal = ({ isOpen, onClose }) => {
 
       const data = await res.json();
       setMessage(data.message);
+      setEmail("");
     } catch (error) {
       console.error("Error on send email: ", error);
     }
@@ -52,7 +53,7 @@ const Modal = ({ isOpen, onClose }) => {
           <button className={styles.btn} onClick={handleSubmit}>
             Enviar link de login para e-mail
           </button>
-          {message && <p>{message}</p>}
+          {message && <p className={styles.msg}>{message}!</p>}
         </div>
         <hr />
         <div className={styles.signUp}>
