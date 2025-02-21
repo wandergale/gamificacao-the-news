@@ -6,7 +6,6 @@ export const VerifyLogin = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    console.log("PARAMS: ", params);
     const token = params.get("token");
 
     if (token) {

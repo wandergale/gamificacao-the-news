@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Modal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const [loginLink, setLoginLink] = useState("");
 
   if (!isOpen) return null;
@@ -21,8 +21,8 @@ const Modal = ({ isOpen, onClose }) => {
         }
       );
 
-      const data = await res.json();
-      console.log(data);
+      // const data = await res.json();
+      // console.log(data);
       // setMessage(data.message);
 
       const generatedLink = `https://the-news-bice.vercel.app/verify-login?token=${data.token}`;

@@ -47,6 +47,7 @@ export const auth = async (req: Request, res: Response) => {
 
   try {
     const secret = process.env.JWT_SECRET;
+    console.log(secret)
     if (!secret) {
       throw new Error("JWT_SECRET is not defined on .env file");
     }
