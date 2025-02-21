@@ -30,10 +30,40 @@ export const sendLoginLink = async (req: Request, res: Response) => {
       expiresIn: "15m",
     });
 
-    console.log(`Link de login enviado: https://the-news-bice.vercel.app/login?token=${token}`)
-    res.json({message: "Email send"})
+    console.log(
+      `Link de login enviado: https://the-news-bice.vercel.app/login?token=${token}`
+    );
+    res.json({ message: "Email send" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error on send link login" });
+  }
+};
+
+export const streak = async (req: Request, res: Response) => {
+  const { userId } = req.query;
+
+  if (!userId) return res.status(400).json({ error: "user id required" });
+
+  try {
+    const result = await pool.query(
+      `SELECT current_streak, longest_streak, last_read
+        FROM streaks
+        WHERE user_id = $1`,
+      [userId]
+    );
+
+    if (result.rows.length === 0) {
+      return res.json({
+        current_streak: 0,
+        longest_streak: 0,
+        last_read: null,
+      });
+    }
+
+    res.json(result.rows[0])
   } catch (error) {
     console.error(error)
-    res.status(500).json({error: "Error on send link login"})
+    res.status(500).json({error: "Error on search streak"})
   }
 };
