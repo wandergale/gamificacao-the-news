@@ -20,10 +20,10 @@ const Modal = ({ isOpen, onClose }) => {
           body: JSON.stringify({ email: email }),
         }
       );
-
+      console.log("enviado");
       const data = await res.json();
       setMessage(data.message);
-      setEmail("");
+      // setEmail("");
       handleLogin();
     } catch (error) {
       console.error("Error on send email: ", error);
@@ -34,7 +34,7 @@ const Modal = ({ isOpen, onClose }) => {
     const res = await fetch(`https://the-news-2a20.onrender.com/auth`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email: email }),
     });
 
     const data = await res.json();
