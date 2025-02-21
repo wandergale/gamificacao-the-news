@@ -26,14 +26,14 @@ export const topReaders = async (req: Request, res: Response) => {
 };
 
 export const stats = async (req: Request, res: Response) => {
-  const { period = "7 days", streak = 0 } = req.query;
+  const { period = "7", streak = 0 } = req.query;
   try {
     const result = await pool.query(
       `
         SELECT u.email, s.current_streak, s.longest_streak, s.last_read
             FROM streaks s
             JOIN users u ON u.id = s.user_id
-            WHERE s.last_read >= NOW() - INTERVAL $1
+            WHERE s.last_read >= NOW() - ($1 || ' days')::INTERVAL
             AND s.current_streak > $2
             ORDER BY s.last_read DESC;`,
       [period, streak]
