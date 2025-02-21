@@ -13,6 +13,7 @@ app.use(
   cors({
     origin: [
       "https://the-news-bice.vercel.app",
+      "https://the-news-bz4eb8y8n-wandersons-projects-7fa6df56.vercel.app",
       "https://the-news-2a20.onrender.com",
     ],
     methods: "GET,POST,PUT,DELETE",
