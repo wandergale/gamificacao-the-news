@@ -12,7 +12,7 @@ const Modal = ({ isOpen, onClose }) => {
   const handleSubmit = async () => {
     try {
       const res = await fetch(
-        `https://the-news-2a20.onrender.com/send-login-token`,
+        `https://the-news-2a20.onrender.com/send-login-link`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
