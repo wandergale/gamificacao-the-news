@@ -2,7 +2,7 @@ import { Router } from "express";
 import { subscribe } from "../controllers/userController";
 import { processWebhook } from "../controllers/webhookController";
 import { metrics, topReaders, stats } from "../controllers/dashboardController";
-import { sendLoginLink } from "../controllers/loginController";
+import { sendLoginLink, streak } from "../controllers/loginController";
 
 const router = Router();
 
@@ -12,5 +12,6 @@ router.get("/metrics", metrics);
 router.get("/top-readers", topReaders);
 router.get("/stats", stats);
 router.post("/send-login-link", sendLoginLink);
+router.get("/streaks", streak);
 
 export default router;
