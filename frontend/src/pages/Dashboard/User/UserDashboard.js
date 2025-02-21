@@ -29,7 +29,7 @@ const UserDashboard = () => {
     } else {
       console.log("Não recebeu token");
     }
-  }, []);
+  }, [token]);
 
   console.log(user);
   if (!user) {
