@@ -31,7 +31,7 @@ const Modal = ({ isOpen, onClose }) => {
   };
 
   const handleLogin = async () => {
-    const res = await fetch(`https://the-news-2a20.onrender.com/auth/login`, {
+    const res = await fetch(`https://the-news-2a20.onrender.com/auth`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
