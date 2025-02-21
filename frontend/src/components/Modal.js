@@ -1,9 +1,31 @@
 import styles from "./Modal.module.css";
-
 import close from "../assets/images/close.svg";
+
+import { useState } from "react";
 
 const Modal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
+
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async () => {
+    try {
+      const res = await fetch(
+        `https://the-news-2a20.onrender.com/send-login-token`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const data = await res.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error("Error on send email: ", error);
+    }
+  };
 
   return (
     <div className={styles.overlay}>
@@ -20,11 +42,17 @@ const Modal = ({ isOpen, onClose }) => {
         </div>
         <div className={styles.form}>
           <label>E-mail</label>
-          <input type="email" placeholder="Insira seu email" />
+          <input
+            type="email"
+            placeholder="Insira seu email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <a href="#">Entrar com senha</a>
-          <button className={styles.btn}>
+          <button className={styles.btn} onClick={handleSubmit}>
             Enviar link de login para e-mail
           </button>
+          {message && <p>{message}</p>}
         </div>
         <hr />
         <div className={styles.signUp}>
