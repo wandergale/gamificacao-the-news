@@ -13,8 +13,8 @@ const Home = () => {
     e.preventDefault();
 
     fetch(`https://the-news-2a20.onrender.com/create/?email=${email}`)
-      .then((res) => {
-        console.log(res.status);
+      .then(() => {
+        // console.log(res.status);
         setEmail("");
       })
       .catch((err) => console.error(err));
