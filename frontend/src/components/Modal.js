@@ -25,6 +25,7 @@ const Modal = ({ isOpen, onClose }) => {
       setMessage(data.message);
 
       const generatedLink = `https://the-news-bice.vercel.app/verify-login?token=${data.token}`;
+      console.log(loginLink);
       setLoginLink(generatedLink);
     } catch (error) {
       console.error("Error on send email: ", error);
