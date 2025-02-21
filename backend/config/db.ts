@@ -46,9 +46,7 @@ const createTables = async () => {
         utm_campaign TEXT,
         utm_channel TEXT
       );
-    `);
-
-    await client.query(`
+    
       DROP VIEW IF EXISTS engagement_metrics;
       CREATE VIEW engagement_metrics AS
       SELECT 
