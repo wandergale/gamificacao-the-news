@@ -13,6 +13,6 @@ router.get("/top-readers", topReaders);
 router.get("/stats", stats);
 router.post("/send-login-link", sendLoginLink);
 router.get("/streaks", streak);
-router.post("/auth", auth);
+router.get("/auth", auth);
 
 export default router;
