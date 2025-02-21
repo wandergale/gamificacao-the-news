@@ -9,8 +9,12 @@ const UserDashboard = () => {
 
   useEffect(() => {
     if (token) {
+      console.log("TOKEN: ", token);
       fetch(`https://the-news-2a20.onrender.com/auth?token=${token}`)
-        .then((res) => res.json())
+        .then((res) => {
+          console.log("FETCH: ", res.json);
+          res.json();
+        })
         .then((data) => {
           if (data.user) {
             setUser(data.user);
@@ -25,6 +29,7 @@ const UserDashboard = () => {
     }
   }, [token]);
 
+  console.log(user);
   if (!user) {
     return <p>Carregando...</p>;
   }
