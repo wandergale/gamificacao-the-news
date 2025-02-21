@@ -2,11 +2,11 @@ import styles from "./Modal.module.css";
 import close from "../assets/images/close.svg";
 
 import { useState } from "react";
-import { VerifyLogin } from "../pages/Dashboard/User/VerifyLogin";
 
 const Modal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [loginLink, setLoginLink] = useState("");
 
   if (!isOpen) return null;
 
@@ -20,30 +20,14 @@ const Modal = ({ isOpen, onClose }) => {
           body: JSON.stringify({ email: email }),
         }
       );
-      console.log("enviado");
+
       const data = await res.json();
       setMessage(data.message);
-      // setEmail("");
-      handleLogin();
+
+      const generatedLink = `https://the-news-bice.vercel.app/verify-login?token=${data.token}`;
+      setLoginLink(generatedLink);
     } catch (error) {
       console.error("Error on send email: ", error);
-    }
-  };
-
-  const handleLogin = async () => {
-    const res = await fetch(`https://the-news-2a20.onrender.com/auth`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email }),
-    });
-
-    const data = await res.json();
-    console.log(data.token);
-
-    if (data.token) {
-      window.location.href = `/verify-login?token=${data.token}`;
-    } else {
-      alert("Erro ao fazer login");
     }
   };
 
@@ -72,7 +56,14 @@ const Modal = ({ isOpen, onClose }) => {
           <button className={styles.btn} onClick={handleSubmit}>
             Enviar link de login para e-mail
           </button>
-          {message && <p className={styles.msg}>{message}!</p>}
+          {/* {message && <p className={styles.msg}>{message}!</p>} */}
+          {loginLink && (
+            <p className={styles.msg}>
+              <a href={loginLink} target="_blank" rel="noopener noreferrer">
+                Clique aqui para fazer login
+              </a>
+            </p>
+          )}
         </div>
         <hr />
         <div className={styles.signUp}>

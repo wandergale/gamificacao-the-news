@@ -1,25 +1,45 @@
 import { useEffect } from "react";
-import { Navigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const VerifyLogin = () => {
-  const [searchParams] = useSearchParams();
-  const navigate = Navigate();
-  const token = searchParams.get("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
     if (token) {
-      localStorage.setItem("token", token);
-      navigate("/dashboard");
+      verifyToken(token);
     } else {
-      alert("Invalid token or expired");
-      navigate("/login");
+      alert("Token inválido");
+      navigate("/");
     }
-  }, [token, navigate]);
+  }, []);
+
+  const verifyToken = async (token) => {
+    try {
+      const res = await fetch("https://the-news-2a20.onrender.com/auth", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem("authToken", token);
+        navigate("/user-dashboard");
+      } else {
+        alert("Erro ao autenticar");
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Erro ao autenticar:", error);
+      navigate("/");
+    }
+  };
 
   return <p>Verificando login...</p>;
-};
-
-export const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/login" />;
 };

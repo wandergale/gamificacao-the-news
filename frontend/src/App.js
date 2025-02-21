@@ -19,10 +19,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/modal" element={<Modal />} /> */}
-          <Route path="verify-login" element={<VerifyLogin />} />
+          <Route path="/verify-login" element={<VerifyLogin />} />
           <Route
-            path="/dashboard"
+            path="/user-dashboard"
             element={
               <ProtectedRoute>
                 <UserDashboard />
