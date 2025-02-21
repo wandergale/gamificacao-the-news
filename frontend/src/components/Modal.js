@@ -4,10 +4,10 @@ import close from "../assets/images/close.svg";
 import { useState } from "react";
 
 const Modal = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+  if (!isOpen) return null;
 
   const handleSubmit = async () => {
     try {
