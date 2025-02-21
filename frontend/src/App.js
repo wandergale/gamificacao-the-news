@@ -7,6 +7,7 @@ import "./App.css";
 // pages
 import Home from "./pages/Home/Home";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import { ProtectedRoute } from "./pages/Dashboard/User/VerifyLogin";
 
 function App() {
   return (
@@ -14,7 +15,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
         </Routes>
       </BrowserRouter>
     </div>
