@@ -7,8 +7,11 @@ import "./App.css";
 // pages
 import Home from "./pages/Home/Home";
 import UserDashboard from "./pages/Dashboard/User/UserDashboard";
-import { ProtectedRoute, VerifyLogin } from "./pages/Dashboard/User/VerifyLogin";
-import Modal from "./components/Modal";
+import {
+  ProtectedRoute,
+  VerifyLogin,
+} from "./pages/Dashboard/User/VerifyLogin";
+// import Modal from "./components/Modal";
 
 function App() {
   return (
@@ -16,7 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Modal />} />
+          {/* <Route path="/modal" element={<Modal />} /> */}
           <Route path="verify-login" element={<VerifyLogin />} />
           <Route
             path="/dashboard"
