@@ -26,6 +26,8 @@ const UserDashboard = () => {
           }
         })
         .catch(console.error);
+    } else {
+      console.log("Não recebeu token");
     }
   }, []);
 
