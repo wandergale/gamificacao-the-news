@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Navigate, useSearchParams } from "react-router-dom";
 
 export const VerifyLogin = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const navigate = Navigate();
   const token = searchParams.get("token");
 
   useEffect(() => {
