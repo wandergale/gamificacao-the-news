@@ -28,7 +28,10 @@ export const VerifyLogin = () => {
         },
       });
 
+      console.log(res);
+
       const data = await res.json();
+      console.log("DATA: ", data)
 
       if (res.ok) {
         localStorage.setItem("authToken", token);
