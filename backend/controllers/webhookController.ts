@@ -43,6 +43,7 @@ export const processWebhook = async (req: Request, res: Response) => {
       } else if (lastRead.toDateString() === today.toDateString()) {
         return res.status(200).json({ message: "Streak already updated" });
       } else {
+        console.log("caiu");
         newStreak = 1;
       }
 
@@ -62,7 +63,7 @@ export const processWebhook = async (req: Request, res: Response) => {
 
     res
       .status(200)
-      .json({ message: "Streak uploaded", newStreak, newLongestStreak });
+      .json({ message: "Streak updated", newStreak, newLongestStreak });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal error" });
