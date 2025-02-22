@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, Navigate, Outlet } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 
 export const VerifyLogin = () => {
   const navigate = useNavigate();
@@ -53,7 +53,6 @@ export const VerifyLogin = () => {
 
 export const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("authToken");
-  console.log(token);
   return token ? children : <Navigate to={`/`} />;
 };
 
