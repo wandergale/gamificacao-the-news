@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [streak, setStreak] = useState(null);
+  const [streakHistory, setStreakHistory] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -25,26 +26,32 @@ const UserDashboard = () => {
         console.log("DATA: ", data);
         if (data.user) {
           setUser(data.user);
-          return fetch(
-            `https://the-news-2a20.onrender.com/streaks?userId=${data.user.id}`
-          );
+          return Promise.all([
+            fetch(
+              `https://the-news-2a20.onrender.com/streaks?userId=${data.user.id}`
+            ).then((res) => res.json()),
+            fetch(
+              `https://the-news-2a20.onrender.com/streak-history?userId=${data.user.id}`
+            ).then((res) => res.json()),
+          ]);
         } else {
           throw new Error("User not found");
         }
       })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Erro on laoding streak");
-        }
-        return res.json();
+      .then(([streakData, historyData]) => {
+        setStreak(streakData);
+        setStreakHistory(historyData);
       })
-      .then(setStreak)
       .catch((error) => console.error("Erro:", error));
   }, []);
 
   if (!user) {
     return <p>Carregando...</p>;
   }
+  // const streak = {
+  //   current_streak: 1,
+  //   longest_streak: 4,
+  // };
 
   return (
     <div className={style.container}>
@@ -60,10 +67,23 @@ const UserDashboard = () => {
         <div className={style.container}>
           <p>Streak Atual: {streak.current_streak} dias</p>
           <p>Maior Streak: {streak.longest_streak}</p>
+           {/* leituras */}
+           <h3>Histórico de leituras:</h3>
+          <ul>
+            {streakHistory.length > 0 ? (
+              streakHistory.map((entry, index) => (
+                <li key={index}>{new Date(entry.read_date).toLocaleDateString()}</li>
+              ))
+            ) : (
+              <p>Nenhum histórico encontrado.</p>
+            )}
+          </ul>
 
           <p>Continue entrando diariamente para aumentar seu streak!</p>
-          <div className={style.btn}>
-            <button onClick={<Navigate to="/" />}>Continuar Lendo</button>
+          <div className={style.btn_wrapper}>
+            <div className={style.btn}>
+              <button onClick={<Navigate to="/" />}>Continuar Lendo</button>
+            </div>
           </div>
         </div>
       ) : (
