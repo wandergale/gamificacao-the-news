@@ -30,7 +30,7 @@ export const VerifyLogin = () => {
       );
 
       if (res.ok) {
-        console.log("res ok")
+        console.log("res ok");
         localStorage.setItem("authToken", token);
         navigate("/user-dashboard");
       } else {
@@ -48,5 +48,6 @@ export const VerifyLogin = () => {
 
 export const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("authToken");
+  console.log(token);
   return token ? children : <Navigate to={`/`} />;
 };
