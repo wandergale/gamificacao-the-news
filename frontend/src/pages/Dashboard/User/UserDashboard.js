@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const UserDashboard = () => {
-  // const [searchParams] = useSearchParams();
-  // const token = searchParams.get("token");
   const [user, setUser] = useState(null);
   const [streak, setStreak] = useState(null);
 
@@ -20,14 +18,14 @@ const UserDashboard = () => {
         if (!res.ok) {
           throw new Error("User not found");
         }
-        return res.json(); // Retorna res.json()
+        return res.json();
       })
       .then((data) => {
         console.log("DATA: ", data);
         if (data.user) {
           setUser(data.user);
           return fetch(
-            `https://the-news-2a20.onrender.com/streak?userId=${data.user.id}`
+            `https://the-news-2a20.onrender.com/streaks?userId=${data.user.id}`
           );
         } else {
           throw new Error("User not found");
