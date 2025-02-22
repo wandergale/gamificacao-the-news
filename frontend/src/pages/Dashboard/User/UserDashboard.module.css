@@ -2,12 +2,12 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
-  background-color: #111827;
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  background-color: #111827;
 }
 
 h2 {
@@ -31,7 +31,14 @@ h2 {
 
 .btn button {
   width: 200px;
+  height: 100px;
   border-radius: 5px;
   background-color: #ffd000;
-  /* align-items: center; */
+  border: none;
+  transition: 0.5s;
+
+  &button:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
+  }
 }
