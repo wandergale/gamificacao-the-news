@@ -54,7 +54,12 @@ const createTables = async () => {
         AVG(current_streak) AS media_streaks,
         COUNT(*) FILTER (WHERE current_streak > 1) AS usuarios_com_streak
       FROM streaks;
+
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin BOOLEAN DEFAULT FALSE;
+
+      UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@email.com';
     `);
+    
     console.log("View engagement_metrics verificada/criada.");
 
     console.log("Tabelas criadas/verificadas com sucesso!");
