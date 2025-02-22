@@ -1,12 +1,31 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #000;
-  color: #ffce04;
   text-align: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
+  background-color: #111827;
+}
+
+h2 {
+  font-size: 3em;
+  color: #ffd000;
+}
+
+.logo_img {
+  width: 80px;
+}
+
+.prog {
+  font-size: 0.8em;
+  color: #888f9b;
+}
+
+.btn {
+  width: 200px;
+  background-color: #ffd000;
+  /* align-items: center; */
 }
