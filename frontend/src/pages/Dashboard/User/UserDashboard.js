@@ -1,6 +1,7 @@
 import style from "./UserDashboard.module.css";
 
 import { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
@@ -48,11 +49,7 @@ const UserDashboard = () => {
   return (
     <div className={style.container}>
       <h2>ola, {user.email}</h2>
-      <img
-        src="https://app.thenewscc.com.br/thenews.webp"
-        alt="logo"
-        width="30px"
-      />
+      <img src="https://app.thenewscc.com.br/thenews.webp" alt="logo" />
       <h2>Sua jornada de Leitura</h2>
       <p>Acompanhe seu progresso diário</p>
       {streak ? (
@@ -61,6 +58,9 @@ const UserDashboard = () => {
           <p>Maior Streak: {streak.longest_streak}</p>
 
           <p>Continue entrando diariamente para aumentar seu streak!</p>
+          <div className={style.btn}>
+            <button onClick={<Navigate to="/" />}>Continuar Lendo</button>
+          </div>
         </div>
       ) : (
         <p>Carregando streak...</p>
