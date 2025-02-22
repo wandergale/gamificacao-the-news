@@ -39,3 +39,26 @@ export const users = async (req: Request, res: Response) => {
   const users = usersResult.rows;
   res.status(200).json({ users: users });
 };
+
+export const getStreakHistory = async (req: Request, res: Response) => {
+  const { userId } = req.query;
+
+  if (!userId) {
+    return res.status(400).json({ error: "User id is required" });
+  }
+
+  try {
+    const history = await pool.query(
+      `
+      SELECT read_date, streak_value 
+      FROM streak_history WHERE user_id = $1 
+      ORDER BY read_date DESC`,
+      [userId]
+    );
+
+    res.status(200).json({ history: history.rows });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error on search history" });
+  }
+};
