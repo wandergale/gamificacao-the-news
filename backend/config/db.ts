@@ -59,7 +59,9 @@ const createTables = async () => {
       CREATE TABLE IF NOT EXISTS streak_history (
         id SERIAL PRIMARY KEY,
         user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-        read_date DATE NOT NULL
+        read_date DATE NOT NULL,
+        streak_value INTEGER NOT NULL,
+        UNIQUE(user_id, read_date)
       );
 
       UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@gmail.com';
