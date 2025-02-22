@@ -39,6 +39,7 @@ export const processWebhook = async (req: Request, res: Response) => {
       if (lastRead?.toDateString() === yesterday.toDateString()) {
         newStreak = current_streak + 1;
       } else if (lastRead.getDay() === 6 && today.getDay() === 1) {
+        // se a ultima for sabado continua na segunda
         newStreak = current_streak + 1;
       } else if (lastRead.toDateString() === today.toDateString()) {
         return res.status(200).json({ message: "Streak already updated" });
@@ -59,6 +60,15 @@ export const processWebhook = async (req: Request, res: Response) => {
            longest_streak = $3,
            last_read = NOW()`,
       [userId, newStreak, newLongestStreak]
+    );
+
+    // historico de leituras
+    await pool.query(
+      `
+      INSERT INTO streak_history (user_id, read_date, streak_value)
+        VALUES ($1, CURRENT_DATE, $2)
+          ON CONFLICT (user_id, read_date) DO NOTHING`,
+      [userId, newStreak]
     );
 
     res
