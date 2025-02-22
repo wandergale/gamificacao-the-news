@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate, Navigate, Outlet } from "react-router-dom";
 
 export const VerifyLogin = () => {
   const navigate = useNavigate();
@@ -30,9 +30,14 @@ export const VerifyLogin = () => {
       );
 
       if (res.ok) {
-        console.log("res ok");
+        const data = await res.json();
+
         localStorage.setItem("authToken", token);
-        navigate("/user-dashboard");
+        localStorage.setItem("isAdmin", data.user.is_admin);
+
+        data.user.is_admin
+          ? navigate("/admin-dashboard")
+          : navigate("/user-dashboard");
       } else {
         alert("Erro ao autenticar");
         navigate("/");
@@ -50,4 +55,9 @@ export const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("authToken");
   console.log(token);
   return token ? children : <Navigate to={`/`} />;
+};
+
+export const ProtectAdminRoute = ({ children }) => {
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  return isAdmin ? children : <Navigate to="/" />;
 };

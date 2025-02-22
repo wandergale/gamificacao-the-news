@@ -7,9 +7,11 @@ import "./App.css";
 // pages
 import Home from "./pages/Home/Home";
 import UserDashboard from "./pages/Dashboard/User/UserDashboard";
+import AdminDashboard from "./pages/Dashboard/Admin/AdminDashboard";
 import {
   ProtectedRoute,
   VerifyLogin,
+  ProtectAdminRoute,
 } from "./pages/Dashboard/User/VerifyLogin";
 // import Modal from "./components/Modal";
 
@@ -28,9 +30,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route element={<AdminRoute />}>
-            <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          </Route>
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectAdminRoute>
+                <AdminDashboard />
+              </ProtectAdminRoute>
+            }
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
