@@ -2,34 +2,46 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const UserDashboard = () => {
-  const [searchParams] = useSearchParams();
-  const token = searchParams.get("token");
+  // const [searchParams] = useSearchParams();
+  // const token = searchParams.get("token");
   const [user, setUser] = useState(null);
   const [streak, setStreak] = useState(null);
 
   useEffect(() => {
-    if (token) {
-      console.log("TOKEN: ", token);
-      fetch(`https://the-news-2a20.onrender.com/auth?token=${token}`)
-        .then((res) => {
-          console.log("FETCH: ", res.json);
-          res.json();
-        })
-        .then((data) => {
-          if (data.user) {
-            setUser(data.user);
-            fetch(
-              `https://the-news-2a20.onrender.com/streak?userId=${data.user.id}`
-            )
-              .then((res) => res.json())
-              .then(setStreak);
-          }
-        })
-        .catch(console.error);
-    } else {
-      console.log("Não recebeu token");
+    const token = localStorage.getItem("authToken");
+
+    if (!token) {
+      console.log("token not found");
+      return;
     }
-  }, [token]);
+
+    fetch(`https://the-news-2a20.onrender.com/auth?token=${token}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("User not found");
+        }
+        return res.json(); // Retorna res.json()
+      })
+      .then((data) => {
+        console.log("DATA: ", data);
+        if (data.user) {
+          setUser(data.user);
+          return fetch(
+            `https://the-news-2a20.onrender.com/streak?userId=${data.user.id}`
+          );
+        } else {
+          throw new Error("User not found");
+        }
+      })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Erro on laoding streak");
+        }
+        return res.json();
+      })
+      .then(setStreak)
+      .catch((error) => console.error("Erro:", error));
+  }, []);
 
   console.log(user);
   if (!user) {
