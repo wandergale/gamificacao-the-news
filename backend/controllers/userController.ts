@@ -30,3 +30,9 @@ export const subscribe = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+export const users = async (req: Request, res: Response) => {
+  const users = await pool.query(`SELECT * FROM users`)
+
+  res.status(200).json({users})
+}
