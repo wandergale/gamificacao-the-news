@@ -45,7 +45,7 @@ const AdminDashboard = () => {
           <strong>Usuários com Streak:</strong> {stats.usuarios_com_streak}
         </p>
         <p>
-          <strong>Média de Streaks:</strong> {stats.media_streaks.toFixed(2)}
+          <strong>Média de Streaks:</strong> {stats.media_streaks}
         </p>
       </div>
 
