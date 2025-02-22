@@ -49,11 +49,15 @@ const UserDashboard = () => {
   return (
     <div className={style.container}>
       {/* <h2>ola, {user.email}</h2> */}
-      <img className={style.logo_img} src="https://app.thenewscc.com.br/thenews.webp" alt="logo" />
+      <img
+        className={style.logo_img}
+        src="https://app.thenewscc.com.br/thenews.webp"
+        alt="logo"
+      />
       <h2>Sua jornada de Leitura</h2>
       <p className={style.prog}>Acompanhe seu progresso diário</p>
       {streak ? (
-        <div className={style.container_streaks}>
+        <div className={style.container}>
           <p>Streak Atual: {streak.current_streak} dias</p>
           <p>Maior Streak: {streak.longest_streak}</p>
 
