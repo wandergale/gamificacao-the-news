@@ -20,7 +20,8 @@ const createTables = async () => {
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         email TEXT UNIQUE NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW()
+        created_at TIMESTAMP DEFAULT NOW(),
+        is_admin BOOLEAN DEFAULT FALSE
       );
 
       CREATE TABLE IF NOT EXISTS reads (
@@ -55,7 +56,11 @@ const createTables = async () => {
         COUNT(*) FILTER (WHERE current_streak > 1) AS usuarios_com_streak
       FROM streaks;
 
-      ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin BOOLEAN DEFAULT FALSE;
+      CREATE TABLE IF NOT EXISTS streak_history (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+        read_date DATE NOT NULL
+      );
 
       UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@gmail.com';
     `);
