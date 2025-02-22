@@ -1,46 +1,70 @@
 import { Request, Response } from "express";
 import pool from "../config/db";
 
-export const metrics = async (req: Request, res: Response) => {
+export const getGeneralStats = async (req: Request, res: Response) => {
   try {
-    const result = await pool.query("SELECT * FROM engagement_metrics");
-    res.json(result.rows[0]);
+    const stats = await pool.query(`
+      SELECT 
+        COUNT(DISTINCT users.id) AS total_usuarios,
+        COUNT(DISTINCT streaks.user_id) FILTER (WHERE streaks.current_streak > 1) AS usuarios_com_streak,
+        COALESCE(AVG(streaks.current_streak), 0) AS media_streaks
+      FROM users
+      LEFT JOIN streaks ON users.id = streaks.user_id;
+    `);
+
+    res.json(stats.rows[0]);
   } catch (error) {
-    res.status(500).json({ error: "Error on searching metrics" });
+    console.error(error);
+    res.status(500).json({ error: "Erro ao obter métricas gerais" });
   }
 };
 
-export const topReaders = async (req: Request, res: Response) => {
+export const getTopUsers = async (req: Request, res: Response) => {
   try {
-    const result = await pool.query(`
-            SELECT u.email, s.current_streak, s.longest_streak, s.last_read
-                FROM streaks s
-                JOIN users u ON u.id = s.user_id
-                ORDER BY s.current_streak DESC
-                LIMIT 10;`);
+    const topUsers = await pool.query(`
+      SELECT users.email, streaks.current_streak, streaks.longest_streak
+      FROM streaks
+      JOIN users ON streaks.user_id = users.id
+      ORDER BY streaks.current_streak DESC
+      LIMIT 10;
+    `);
 
-    res.json(result.rows);
+    res.json(topUsers.rows);
   } catch (error) {
-    res.status(500).json({ error: "Error on ranking" });
+    console.error(error);
+    res.status(500).json({ error: "Erro ao obter ranking" });
   }
 };
 
-export const stats = async (req: Request, res: Response) => {
-  const { period = "7", streak = 0 } = req.query;
-  try {
-    const result = await pool.query(
-      `
-        SELECT u.email, s.current_streak, s.longest_streak, s.last_read
-            FROM streaks s
-            JOIN users u ON u.id = s.user_id
-            WHERE s.last_read >= NOW() - ($1 || ' days')::INTERVAL
-            AND s.current_streak > $2
-            ORDER BY s.last_read DESC;`,
-      [period, streak]
-    );
+export const getFilteredStats = async (req: Request, res: Response) => {
+  const { startDate, endDate, streakStatus } = req.query;
+  let query = `
+    SELECT users.email, streaks.current_streak, streaks.longest_streak, streaks.last_read
+    FROM streaks
+    JOIN users ON streaks.user_id = users.id
+    WHERE 1=1
+  `;
 
-    res.json(result.rows);
+  const params = [];
+  let index = 1;
+
+  if (startDate && endDate) {
+    query += ` AND streaks.last_read BETWEEN $${index} AND $${index + 1}`;
+    params.push(startDate, endDate);
+    index += 2;
+  }
+
+  if (streakStatus === "active") {
+    query += ` AND streaks.current_streak > 0`;
+  } else if (streakStatus === "inactive") {
+    query += ` AND (streaks.current_streak = 0 OR streaks.last_read < NOW() - INTERVAL '1 day')`;
+  }
+
+  try {
+    const filteredStats = await pool.query(query, params);
+    res.json(filteredStats.rows);
   } catch (error) {
-    res.status(500).json({ error: "Error on searching stats" });
+    console.error(error);
+    res.status(500).json({ error: "Erro on filtering" });
   }
 };
