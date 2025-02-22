@@ -57,9 +57,9 @@ const createTables = async () => {
 
       ALTER TABLE users ADD COLUMN IF NOT EXISTS is_admin BOOLEAN DEFAULT FALSE;
 
-      UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@email.com';
+      UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@gmail.com';
     `);
-    
+
     console.log("View engagement_metrics verificada/criada.");
 
     console.log("Tabelas criadas/verificadas com sucesso!");

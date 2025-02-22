@@ -49,6 +49,7 @@ const UserDashboard = () => {
 
   return (
     <div className={style.container}>
+      <h2>ola, {user.email}</h2>
       <img
         src="https://app.thenewscc.com.br/thenews.webp"
         alt="logo"
