@@ -28,17 +28,20 @@ export const processWebhook = async (req: Request, res: Response) => {
     let newLongestStreak = 1;
     let lastRead = null;
 
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const yesterday = new Date(today)
+    yesterday.setDate(today.getDate() - 1);
+
     if (streakResult.rows.length > 0) {
       const { current_streak, longest_streak, last_read } =
         streakResult.rows[0];
       lastRead = new Date(last_read);
-      const today = new Date();
-      const yesterday = new Date();
       yesterday.setDate(today.getDate() - 1);
 
       if (lastRead?.toDateString() === yesterday.toDateString()) {
         newStreak = current_streak + 1;
-      } else if (lastRead.getDay() === 6 && today.getDay() === 1) {
+      } else if (lastRead.getDay() === 6 && now.getDay() === 1) {
         // se a ultima for sabado continua na segunda
         newStreak = current_streak + 1;
       } else if (lastRead.toDateString() === today.toDateString()) {
