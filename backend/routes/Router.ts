@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { subscribe } from "../controllers/userController";
+import { subscribe, users } from "../controllers/userController";
 import { processWebhook } from "../controllers/webhookController";
 import {
   getGeneralStats,
@@ -18,5 +18,6 @@ router.get("/admin/stats/filter", getFilteredStats);
 router.post("/send-login-link", sendLoginLink);
 router.get("/streaks", streak);
 router.get("/auth", auth);
+router.get("/users", users);
 
 export default router;
