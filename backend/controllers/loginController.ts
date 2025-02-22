@@ -22,11 +22,14 @@ export const sendLoginLink = async (req: Request, res: Response) => {
       );
     }
 
+    const { id, is_admin } = user.rows[0];
+
     const secret = process.env.JWT_SECRET;
     if (!secret) {
       throw new Error("JWT_SECRET is not defined on .env file");
     }
-    const token = jwt.sign({ userId: user.rows[0].id }, secret, {
+
+    const token = jwt.sign({ userId: id, isAdmin: is_admin }, secret, {
       expiresIn: "15m",
     });
 
@@ -47,18 +50,19 @@ export const auth = async (req: Request, res: Response) => {
 
   try {
     const secret = process.env.JWT_SECRET;
-    console.log(secret)
+    console.log(secret);
     if (!secret) {
       throw new Error("JWT_SECRET is not defined on .env file");
     }
 
     const decoded = jwt.verify(token, secret) as JwtPayload;
-    console.log(decoded)
-    const user = await pool.query("SELECT * FROM users WHERE id = $1", [
-      decoded.userId,
-    ]);
+    console.log(decoded);
+    const user = await pool.query(
+      "SELECT id, email, is_admin FROM users WHERE id = $1",
+      [decoded.userId]
+    );
 
-    console.log("USER: ", user)
+    console.log("USER: ", user);
 
     if (user.rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
