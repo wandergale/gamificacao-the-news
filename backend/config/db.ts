@@ -63,6 +63,7 @@ const createTables = async () => {
       );
 
       UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@gmail.com';
+      
     `);
 
     console.log("View engagement_metrics verificada/criada.");
