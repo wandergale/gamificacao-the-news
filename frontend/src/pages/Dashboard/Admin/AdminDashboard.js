@@ -21,25 +21,6 @@ const AdminDashboard = () => {
       .catch(console.error);
   }, []);
 
-  useEffect(() => {
-    fetch("https://the-news-2a20.onrender.com/admin/stats/graph")
-      .then((res) => res.json())
-      .then((data) => {
-        setChartData({
-          labels: data.map((d) => d.data),
-          datasets: [
-            {
-              label: "Leituras por Dia",
-              data: data.map((d) => d.leituras),
-              borderColor: "blue",
-              fill: false,
-            },
-          ],
-        });
-      })
-      .catch(console.error);
-  }, []);
-
   const handleFilter = () => {
     fetch(
       `https://the-news-2a20.onrender.com/admin/stats/filter?startDate=${startDate}&endDate=${endDate}&streakStatus=${streakStatus}`
