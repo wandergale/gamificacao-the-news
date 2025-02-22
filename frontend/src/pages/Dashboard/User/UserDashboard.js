@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 
 const UserDashboard = () => {
   const [user, setUser] = useState(null);
@@ -47,13 +46,21 @@ const UserDashboard = () => {
   }
 
   return (
-    <div>
-      <h2>Olá, {user.email}!</h2>
+    <div className={style.container}>
+      <img
+        src="https://app.thenewscc.com.br/thenews.webp"
+        alt="logo"
+        width="30px"
+      />
+      <h2>Sua jornada de Leitura</h2>
+      <p>Acompanhe seu progresso diário</p>
       {streak ? (
-        <>
+        <div className={style.container_streaks}>
           <p>Streak Atual: {streak.current_streak} dias</p>
           <p>Maior Streak: {streak.longest_streak}</p>
-        </>
+
+          <p>Continue entrando diariamente para aumentar seu streak!</p>
+        </div>
       ) : (
         <p>Carregando streak...</p>
       )}
