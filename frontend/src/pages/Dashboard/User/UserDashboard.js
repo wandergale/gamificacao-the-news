@@ -1,3 +1,5 @@
+import style from './UserDashboard.module.css'
+
 import { useState, useEffect } from "react";
 
 const UserDashboard = () => {
