@@ -32,9 +32,10 @@ export const subscribe = async (req: Request, res: Response) => {
 };
 
 export const users = async (req: Request, res: Response) => {
-  const users = await pool.query(
+  const usersResult = await pool.query(
     `SELECT id, email, created_at, is_admin FROM users`
   );
 
-  res.status(200).json({ users });
+  const users = usersResult.rows;
+  res.status(200).json({ users: users });
 };
