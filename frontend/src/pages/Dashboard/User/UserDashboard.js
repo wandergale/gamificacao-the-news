@@ -1,4 +1,5 @@
-import style from './UserDashboard.module.css'
+import { Navigate } from "react-router-dom";
+import style from "./UserDashboard.module.css";
 
 import { useState, useEffect } from "react";
 
@@ -10,8 +11,9 @@ const UserDashboard = () => {
     const token = localStorage.getItem("authToken");
 
     if (!token) {
-      console.log("token not found");
-      return;
+      // console.log("token not found");
+      alert("Invalid token");
+      return <Navigate to="/" />;
     }
 
     fetch(`https://the-news-2a20.onrender.com/auth?token=${token}`)
@@ -42,7 +44,6 @@ const UserDashboard = () => {
       .catch((error) => console.error("Erro:", error));
   }, []);
 
-  console.log(user);
   if (!user) {
     return <p>Carregando...</p>;
   }
