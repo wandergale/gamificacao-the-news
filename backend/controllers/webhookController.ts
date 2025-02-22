@@ -4,7 +4,7 @@ import pool from "../config/db";
 export const processWebhook = async (req: Request, res: Response) => {
   const { email } = req.query;
   if (!email) {
-    return res.status(400).json({ error: "E-mail é obrigatório" });
+    return res.status(400).json({ error: "email is required" });
   }
 
   try {
@@ -18,23 +18,51 @@ export const processWebhook = async (req: Request, res: Response) => {
     }
     const userId = userResult.rows[0].id;
 
-    // atualiza o streak
-    await pool.query(
-      `INSERT INTO streaks (user_id, current_streak, longest_streak, last_read)
-       VALUES ($1, 1, 1, NOW())
-       ON CONFLICT (user_id) DO UPDATE
-       SET current_streak = 
-         CASE 
-           WHEN streaks.last_read IS NULL OR streaks.last_read < NOW() - INTERVAL '1 day' 
-           THEN streaks.current_streak + 1
-           ELSE 1
-         END,
-       longest_streak = GREATEST(streaks.longest_streak, streaks.current_streak),
-       last_read = NOW()`,
+    const streakResult = await pool.query(
+      `
+      SELECT current_streak, longest_streak, last_read FROM streaks WHERE user_id = $1`,
       [userId]
     );
 
-    res.status(200).json({ message: "Streak uploaded" });
+    let newStreak = 1;
+    let newLongestStreak = 1;
+    let lastRead = null;
+
+    if (streakResult.rows.length > 0) {
+      const { current_streak, longest_streak, last_read } =
+        streakResult.rows[0];
+      lastRead = new Date(last_read);
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+
+      if (lastRead?.toDateString() === yesterday.toDateString()) {
+        newStreak = current_streak + 1;
+      } else if (lastRead.getDay() === 6 && today.getDay() === 1) {
+        newStreak = current_streak + 1;
+      } else if (lastRead.toDateString() === today.toDateString()) {
+        return res.status(200).json({ message: "Streak already updated" });
+      } else {
+        newStreak = 1;
+      }
+
+      newLongestStreak = Math.max(longest_streak, newStreak);
+    }
+
+    // atualiza o streak
+    await pool.query(
+      `INSERT INTO streaks (user_id, current_streak, longest_streak, last_read)
+       VALUES ($1, $2, $3, NOW())
+       ON CONFLICT (user_id) DO UPDATE
+       SET current_streak = $2,
+           longest_streak = $3,
+           last_read = NOW()`,
+      [userId, newStreak, newLongestStreak]
+    );
+
+    res
+      .status(200)
+      .json({ message: "Streak uploaded", newStreak, newLongestStreak });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal error" });
