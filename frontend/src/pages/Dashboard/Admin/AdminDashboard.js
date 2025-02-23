@@ -72,7 +72,7 @@ const AdminDashboard = () => {
         <ul className={style.ul_top}>
           {ranking.map((user, index) => (
             <li className={style.li_top} key={index}>
-              {user.email} - Streak Atual: {user.current_streak} | Máx:{" "}
+              {user.email} - Streak Atual: {user.current_streak} | Máximo:{" "}
               {user.longest_streak}
             </li>
           ))}

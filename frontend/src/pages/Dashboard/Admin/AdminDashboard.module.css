@@ -21,6 +21,7 @@ body {
   font-size: 2.2em;
   color: #ffd000;
   margin-bottom: 20px;
+  background-color: transparent;
 }
 
 .general_metrics {
@@ -33,11 +34,13 @@ body {
 }
 
 .general_metrics h3 {
+  background-color: transparent;
   color: #ffd000;
   margin-bottom: 15px;
 }
 
 .stats {
+  background-color: transparent;
   color: #9ca3af;
   font-size: 1em;
   margin: 10px 0;
@@ -48,10 +51,12 @@ body {
 }
 
 .top_readers h3 {
+  background-color: transparent;
   color: #ffd000;
 }
 
 .ul_top {
+  background-color: transparent;
   list-style: none;
   padding: 0;
 }
