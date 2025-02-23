@@ -53,6 +53,10 @@ const UserDashboard = () => {
 
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
+  const handleClick = () => {
+    navigate("/");
+  };
+
   return (
     <div className={style.container}>
       <img
@@ -82,7 +86,7 @@ const UserDashboard = () => {
       ) : (
         <p>Carregando streaks</p>
       )}
-      {streakHistory && streakHistory ? (
+      {streakHistory && (
         <div className={style.weeklyProgress}>
           <h3>Progresso da Semana</h3>
           <div className={style.week}>
@@ -98,15 +102,13 @@ const UserDashboard = () => {
             ))}
           </div>
         </div>
-      ) : (
-        <p>Carregando streak history </p>
       )}
       <p className={style.cont}>
         Continue entrando diariamente para aumentar seu streak!
       </p>
       <div className={style.btn_wrapper}>
         <div className={style.btn}>
-          <button onClick={navigate("/")}>Continuar Lendo</button>
+          <button onClick={handleClick}>Continuar Lendo</button>
         </div>
       </div>
     </div>
