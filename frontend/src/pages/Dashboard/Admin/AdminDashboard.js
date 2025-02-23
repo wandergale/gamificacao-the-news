@@ -1,7 +1,9 @@
 import style from "./AdminDashboard.module.css";
 
 import { useEffect, useState } from "react";
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
