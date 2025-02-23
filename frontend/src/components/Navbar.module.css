@@ -75,7 +75,7 @@
   background-color: #f2f2f2;
 }
 
-li:first-child {
+.start li:first-child {
   flex-direction: start;
   margin: 0 0 0 50px;
 }

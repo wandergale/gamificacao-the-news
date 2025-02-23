@@ -83,8 +83,8 @@ body {
 }
 
 .li_top {
-    width: 100%;
-  max-width: 600px;
+  width: 100%;
+  width: 600px;
   background-color: transparent;
   text-align: center;
   border-radius: 8px;
