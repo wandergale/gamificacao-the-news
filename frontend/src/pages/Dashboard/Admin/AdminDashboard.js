@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
+  const [filteredStats, setFilteredStats] = useState(null);
   const [ranking, setRanking] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -30,7 +31,7 @@ const AdminDashboard = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("DADOS RECEBIDOS: ", data);
-        setStats([...data]);
+        setFilteredStats(data);
       })
       .catch(console.error);
   };
@@ -44,13 +45,25 @@ const AdminDashboard = () => {
       <div>
         <h3>Métricas Gerais</h3>
         <p className={style.streaks}>
-          <strong>Total de Usuários:</strong> {stats.total_usuarios}
+          <strong>Total de Usuários:</strong>{" "}
+          {filteredStats ? filteredStats.length : stats.total_usuarios}
         </p>
         <p className={style.streaks}>
-          <strong>Usuários com Streak:</strong> {stats.usuarios_com_streak}
+          <strong>Usuários com Streak:</strong>{" "}
+          {filteredStats
+            ? filteredStats.filter((user) => user.current_streak > 0).length
+            : stats.usuarios_com_streak}
         </p>
         <p className={style.streaks}>
-          <strong>Média de Streaks:</strong> {stats.media_streaks}
+          <strong>Média de Streaks:</strong>{" "}
+          {filteredStats
+            ? (
+                filteredStats.reduce(
+                  (acc, user) => acc + user.current_streak,
+                  0
+                ) / filteredStats.length || 0
+              ).toFixed(2)
+            : stats.media_streaks}
         </p>
       </div>
 
