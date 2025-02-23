@@ -42,7 +42,7 @@ const UserDashboard = () => {
       })
       .then(([streakData, historyData]) => {
         setStreak(streakData);
-        console.log(historyData)
+        console.log(historyData);
         setStreakHistory(historyData);
         // console.log(streakHistory)
       })
@@ -63,12 +63,12 @@ const UserDashboard = () => {
     <>
       {streak && (
         <div className={style.container}>
-        <img
-          src="https://app.thenewscc.com.br/thenews.webp"
-          alt="logo the news"
-        />
-        <h2>Sua Jornada de Leitura</h2>
-        <p className={style.progres}>Acompanhe seu progresso diário</p>
+          <img
+            src="https://app.thenewscc.com.br/thenews.webp"
+            alt="logo the news"
+          />
+          <h2>Sua Jornada de Leitura</h2>
+          <p className={style.progres}>Acompanhe seu progresso diário</p>
           <div className={style.stats}>
             <div className={style.card}>
               <div className={style.currentStreak}>
@@ -77,7 +77,7 @@ const UserDashboard = () => {
               </div>
               <span>Dias Seguidos</span>
             </div>
-  
+
             <div className={style.card}>
               <div className={style.currentStreak}>
                 <p className={style.emoji}>🏆</p>
@@ -86,35 +86,35 @@ const UserDashboard = () => {
               <span>Dias Seguidos</span>
             </div>
           </div>
-        {streakHistory && (
-          <div className={style.weeklyProgress}>
-            <h3>Progresso da Semana</h3>
-            <div className={style.week}>
-              {weekDays.map((day, index) => (
-                <div
-                  key={index}
-                  className={`${style.dayBox} ${
-                    streakHistory[index] ? style.active : ""
-                  }`}
-                >
-                  {day}
-                </div>
-              ))}
+          {streakHistory && (
+            <div className={style.weeklyProgress}>
+              <h3>Progresso da Semana</h3>
+              <div className={style.week}>
+                {weekDays.map((day, index) => (
+                  <div
+                    key={index}
+                    className={`${style.dayBox} ${
+                      streakHistory.history[index] ? style.active : ""
+                    }`}
+                  >
+                    {day}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          <p className={style.cont}>
+            Continue entrando diariamente para aumentar seu streak!
+          </p>
+          <div className={style.btn_wrapper}>
+            <div className={style.btn}>
+              <button onClick={handleClick}>Continuar Lendo</button>
             </div>
           </div>
-        )}
-        <p className={style.cont}>
-          Continue entrando diariamente para aumentar seu streak!
-        </p>
-        <div className={style.btn_wrapper}>
-          <div className={style.btn}>
-            <button onClick={handleClick}>Continuar Lendo</button>
-          </div>
         </div>
-      </div>
       )}
     </>
-  )
+  );
 };
 
 export default UserDashboard;
