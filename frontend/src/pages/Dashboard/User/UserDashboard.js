@@ -28,12 +28,12 @@ const UserDashboard = () => {
         if (data.user) {
           setUser(data.user);
           return Promise.all([
-            fetch(`https://the-news-2a20.onrender.com/streaks?userId=${data.user.id}`).then((res) =>
-              res.json()
-            ),
-            fetch(`https://the-news-2a20.onrender.com/streak-history?userId=${data.user.id}`).then(
-              (res) => res.json()
-            ),
+            fetch(
+              `https://the-news-2a20.onrender.com/streaks?userId=${data.user.id}`
+            ).then((res) => res.json()),
+            fetch(
+              `https://the-news-2a20.onrender.com/streak-history?userId=${data.user.id}`
+            ).then((res) => res.json()),
           ]);
         } else {
           throw new Error("User not found");
@@ -80,7 +80,7 @@ const UserDashboard = () => {
                 <p className={style.emoji}>🏆</p>
                 <p>{streak.longest_streak}</p>
               </div>
-              <span>Dias Seguidos</span>
+              <span>Recorde Pessoal</span>
             </div>
           </div>
           {streakHistory && (
