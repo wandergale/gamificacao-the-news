@@ -13,12 +13,10 @@ import {
   VerifyLogin,
   ProtectAdminRoute,
 } from "./pages/Dashboard/User/VerifyLogin";
-// import Modal from "./components/Modal";
 
 function App() {
   return (
     <div className="App">
-      {/* <UserDashboard /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
