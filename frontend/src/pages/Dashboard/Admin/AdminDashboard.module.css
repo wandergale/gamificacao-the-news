@@ -79,16 +79,15 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
 }
 
 .li_top {
-  width: 650px;
+  width: 600px;
   background-color: transparent;
   text-align: center;
   border-radius: 8px;
   padding: 10px;
-  margin: 5px 0;
+  margin: 5px auto;
   border: 1px solid #374150;
   color: #ffffff;
   font-weight: bold;
