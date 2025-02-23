@@ -42,9 +42,7 @@ const UserDashboard = () => {
       })
       .then(([streakData, historyData]) => {
         setStreak(streakData);
-        console.log(historyData);
         setStreakHistory(historyData);
-        // console.log(streakHistory)
       })
       .catch((error) => console.error("Erro:", error));
   }, []);
@@ -94,7 +92,8 @@ const UserDashboard = () => {
                   <div
                     key={index}
                     className={`${style.dayBox} ${
-                      streakHistory?.history?.includes(day) ? style.active : ""
+                      (console.log(streakHistory.history.read_date),
+                      streakHistory.history[index] ? style.active : "")
                     }`}
                   >
                     {day}
