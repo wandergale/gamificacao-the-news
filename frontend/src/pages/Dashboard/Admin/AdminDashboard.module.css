@@ -82,12 +82,17 @@ body {
 .li_top {
   background-color: transparent;
   text-align: center;
+  width: 600;
   border-radius: 8px;
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #374150;
   color: #ffffff;
   font-weight: bold;
+}
+
+.li-top:first-child {
+  margin-left: 0;
 }
 
 .li-top:last-child {
