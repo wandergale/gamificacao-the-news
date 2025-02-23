@@ -3,11 +3,11 @@ body {
   padding: 0;
   text-align: center;
   font-family: "Poppins", sans-serif;
-  background-color: #111827;
   color: #fff;
 }
 
 .container {
+  background-color: #111827;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -43,6 +43,14 @@ body {
   margin: 10px 0;
 }
 
+.top_readers {
+  background-color: #18212f;
+}
+
+.top_readers h3 {
+  color: #ffd000;
+}
+
 .ul_top {
   list-style: none;
   padding: 0;
@@ -56,6 +64,14 @@ body {
   border: 1px solid #374150;
   color: #ffffff;
   font-weight: bold;
+}
+
+.filter_stats {
+  background-color: #111827;
+}
+
+.filter_stats h3 {
+  color: #ffd000;
 }
 
 .input_filter,

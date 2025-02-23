@@ -67,7 +67,7 @@ const AdminDashboard = () => {
         </p>
       </div>
 
-      <div>
+      <div className={style.top_readers}>
         <h3>Top 10 Leitores Mais Engajados</h3>
         <ul className={style.ul_top}>
           {ranking.map((user, index) => (
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
         </ul>
       </div>
 
-      <div>
+      <div className={style.filter_stats}>
         <h3>Filtrar Estatísticas</h3>
         <label>Data Início:</label>
         <input
