@@ -151,6 +151,11 @@ label {
   .container {
     padding: 0;
   }
+
+  #painel {
+    margin-top: 20px;
+  }
+
   .general_metrics {
     max-width: 300px;
   }
@@ -161,6 +166,10 @@ label {
   }
 
   .top_readers {
+    max-width: 300px;
+  }
+
+  .filter_stats {
     max-width: 300px;
   }
 }
