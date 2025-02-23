@@ -148,6 +148,9 @@ label {
 }
 
 @media (max-width: 580px) {
+  .container {
+    padding: 0;
+  }
   .general_metrics {
     max-width: 300px;
   }
