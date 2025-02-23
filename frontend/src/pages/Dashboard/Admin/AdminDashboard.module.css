@@ -54,6 +54,7 @@ body {
 }
 
 .top_readers {
+  border: 1px solid #303e55;
   background-color: #18212f;
   display: flex;
   flex-direction: column;
@@ -82,7 +83,6 @@ body {
 .li_top {
   background-color: transparent;
   text-align: center;
-  width: 600;
   border-radius: 8px;
   padding: 10px;
   margin: 5px 0;
@@ -92,7 +92,7 @@ body {
 }
 
 .li-top:first-child {
-  margin-left: 0;
+  margin-left: -10px;
 }
 
 .li-top:last-child {
