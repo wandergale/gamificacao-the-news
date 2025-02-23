@@ -1,3 +1,10 @@
 .container {
-    
+  background-color: #111827;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  color: #ffd000;
+  margin: 20px 0 20px 0;
 }

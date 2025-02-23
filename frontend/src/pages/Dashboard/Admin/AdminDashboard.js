@@ -42,19 +42,19 @@ const AdminDashboard = () => {
     <div className={style.container}>
       <h2>Painel Administrativo</h2>
 
-      <div>
+      <div className={style.general_metrics}>
         <h3>Métricas Gerais</h3>
-        <p className={style.streaks}>
+        <p className={style.stats}>
           <strong>Total de Usuários:</strong>{" "}
           {filteredStats ? filteredStats.length : stats.total_usuarios}
         </p>
-        <p className={style.streaks}>
+        <p className={style.stats}>
           <strong>Usuários com Streak:</strong>{" "}
           {filteredStats
             ? filteredStats.filter((user) => user.current_streak > 0).length
             : stats.usuarios_com_streak}
         </p>
-        <p className={style.streaks}>
+        <p className={style.stats}>
           <strong>Média de Streaks:</strong>{" "}
           {filteredStats
             ? (
