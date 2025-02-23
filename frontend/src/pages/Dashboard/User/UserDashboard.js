@@ -94,7 +94,7 @@ const UserDashboard = () => {
                   <div
                     key={index}
                     className={`${style.dayBox} ${
-                      streakHistory.history[index] ? style.active : ""
+                      streakHistory?.history?.includes(day) ? style.active : ""
                     }`}
                   >
                     {day}
