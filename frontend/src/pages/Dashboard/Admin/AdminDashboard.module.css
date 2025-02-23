@@ -29,7 +29,7 @@ body {
   background-color: #18212f;
   border-radius: 10px;
   padding: 20px;
-  width: 400px;
+  width: 650px;
   border: 1px solid #303e55;
   text-align: left;
   margin-bottom: 30px;
@@ -59,7 +59,8 @@ body {
   flex-direction: column;
   margin-bottom: 30px;
   border-radius: 10px;
-  width: 400px;
+  padding: 20px;
+  width: 650px;
 }
 
 .top_readers h3 {
@@ -88,7 +89,7 @@ body {
 }
 
 .filter_stats {
-  width: 400px;
+  width: 650px;
   background-color: #111827;
 }
 
