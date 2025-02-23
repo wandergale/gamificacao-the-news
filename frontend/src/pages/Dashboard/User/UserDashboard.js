@@ -1,9 +1,11 @@
 import style from "./UserDashboard.module.css";
 
 import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState(null);
   const [streak, setStreak] = useState(null);
   const [streakHistory, setStreakHistory] = useState(null);
@@ -104,7 +106,7 @@ const UserDashboard = () => {
       </p>
       <div className={style.btn_wrapper}>
         <div className={style.btn}>
-          <button onClick={<Navigate to="/" />}>Continuar Lendo</button>
+          <button onClick={navigate("/")}>Continuar Lendo</button>
         </div>
       </div>
     </div>
