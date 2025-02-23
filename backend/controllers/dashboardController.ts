@@ -57,7 +57,7 @@ export const getFilteredStats = async (req: Request, res: Response) => {
   if (streakStatus === "active") {
     query += ` AND streaks.current_streak > 0`;
   } else if (streakStatus === "inactive") {
-    query += ` AND (streaks.current_streak = 0 OR streaks.last_read::DATE < CURRENT_DATE - INTERVAL '1 day')`;
+    query += ` AND (streaks.current_streak IS NULL OR streaks.current_streak = 0 OR streaks.last_read IS NULL OR streaks.last_read::DATE < CURRENT_DATE - INTERVAL '1 day')`;
   }
 
   try {
