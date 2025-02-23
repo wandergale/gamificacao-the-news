@@ -1,92 +1,94 @@
 body {
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    background-color: #111827;
-    color: #fff;
-  }
-  
-  .container {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-  }
-  
-  h2 {
-    font-size: 2.2em;
-    color: #ffd000;
-    margin-bottom: 20px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background-color: #111827;
+  color: #fff;
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+#painel {
+  font-size: 2.2em;
+  color: #ffd000;
+  margin-bottom: 20px;
+}
+
+.general_metrics {
+  background-color: #18212f;
+  border-radius: 10px;
+  padding: 20px;
+  width: 60%;
+  border: 1px solid #303e55;
+  text-align: left;
+}
+
+.general_metrics h3 {
+  color: #ffd000;
+  margin-bottom: 15px;
+}
+
+.stats {
+  color: #9ca3af;
+  font-size: 1em;
+  margin: 10px 0;
+}
+
+.ul_top {
+  list-style: none;
+  padding: 0;
+}
+
+.li_top {
+  background: #27354b;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #374150;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.input_filter,
+select,
+.btn_filter {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+}
+
+.input_filter,
+select {
+  background: #27354b;
+  color: #fff;
+  border: 1px solid #374150;
+}
+
+.btn_filter {
+  background-color: #ffd000;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn_filter:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 992px) {
   .general_metrics {
-    background-color: #18212f;
-    border-radius: 10px;
-    padding: 20px;
-    width: 60%;
-    border: 1px solid #303e55;
-    text-align: left;
+    width: 90%;
   }
-  
-  .general_metrics h3 {
-    color: #ffd000;
-    margin-bottom: 15px;
-  }
-  
-  .stats {
-    color: #9ca3af;
-    font-size: 1em;
-    margin: 10px 0;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background: #27354b;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #374150;
-    color: #ffffff;
-    font-weight: bold;
-  }
-  
-  input, select, button {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    font-size: 1em;
-  }
-  
-  input, select {
-    background: #27354b;
-    color: #fff;
-    border: 1px solid #374150;
-  }
-  
-  button {
-    background-color: #ffd000;
-    color: #000;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  button:hover {
-    transform: scale(1.05);
-  }
-  
-  @media (max-width: 992px) {
-    .general_metrics {
-      width: 90%;
-    }
-  }
-  
+}
