@@ -78,9 +78,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .li_top {
+  width: 650px;
   background-color: transparent;
   text-align: center;
   border-radius: 8px;
@@ -89,14 +92,6 @@ body {
   border: 1px solid #374150;
   color: #ffffff;
   font-weight: bold;
-}
-
-.li-top:first-child {
-  margin-left: -10px;
-}
-
-.li-top:last-child {
-  margin-bottom: 10px;
 }
 
 .filter_stats {
