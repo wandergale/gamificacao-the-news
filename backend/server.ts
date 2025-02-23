@@ -21,3 +21,6 @@ app.use(express.json());
 app.use(routes);
 
 app.listen(PORT, () => console.log(`Server rodando na porta ${PORT}`));
+
+
+export default app; // tests
