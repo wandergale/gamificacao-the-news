@@ -25,7 +25,6 @@ const UserDashboard = () => {
         return res.json();
       })
       .then((data) => {
-        console.log("DATA: ", data);
         if (data.user) {
           setUser(data.user);
           return Promise.all([
