@@ -71,13 +71,13 @@ body {
 }
 
 .ul_top {
-  align-items: center;
   background-color: transparent;
   list-style: none;
   padding: 0;
 }
 
 .li_top {
+    align-items: center;
   background-color: transparent;
   border-radius: 8px;
   padding: 10px;
@@ -92,11 +92,12 @@ body {
 }
 
 .filter_stats {
-  width: 700px;
+  width: 750px;
   background-color: #111827;
 }
 
 .filter_stats h3 {
+    text-align: left;
   color: #ffd000;
   background-color: transparent;
   margin-top: 10px;
