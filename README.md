@@ -1,6 +1,9 @@
 # Case - Gamificação the news
 
 ## instruções para rodar projeto
+Deploy do projeto - (https://the-news-bice.vercel.app/) -- (https://the-news-2a20.onrender.com)
+
+</br>
 BACKEND <br/>
 * Criar um banco de dados postgreSQL e rodar o SQL: <br />
 ```
