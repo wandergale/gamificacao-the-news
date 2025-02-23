@@ -146,3 +146,18 @@ label {
     width: 500px;
   }
 }
+
+@media (max-width: 580px) {
+  .general_metrics {
+    max-width: 350px;
+  }
+
+  .general_metrics h3,
+  p {
+    text-align: center;
+  }
+
+  .top_readers {
+    max-width: 350px;
+  }
+}
