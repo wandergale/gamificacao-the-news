@@ -1,3 +1,5 @@
+import style from "./AdminDashboard/module.css";
+
 import { useEffect, useState } from "react";
 
 const AdminDashboard = () => {
@@ -26,25 +28,28 @@ const AdminDashboard = () => {
       `https://the-news-2a20.onrender.com/admin/stats/filter?startDate=${startDate}&endDate=${endDate}&streakStatus=${streakStatus}`
     )
       .then((res) => res.json())
-      .then(setStats)
+      .then((data) => {
+        console.log("DADOS RECEBIDOS: ",data)
+        setStats(data);
+      })
       .catch(console.error);
   };
 
   if (!stats) return <p>Carregando...</p>;
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+    <div className={style.container}>
       <h2>Painel Administrativo</h2>
 
       <div>
         <h3>Métricas Gerais</h3>
-        <p>
+        <p className={style.streaks}>
           <strong>Total de Usuários:</strong> {stats.total_usuarios}
         </p>
-        <p>
+        <p className={style.streaks}>
           <strong>Usuários com Streak:</strong> {stats.usuarios_com_streak}
         </p>
-        <p>
+        <p className={style.streaks}>
           <strong>Média de Streaks:</strong> {stats.media_streaks}
         </p>
       </div>
