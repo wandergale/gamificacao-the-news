@@ -150,7 +150,6 @@ label {
 @media (max-width: 580px) {
   .container {
     padding: 0;
-    min-height: 110vh;
   }
 
   #painel {
