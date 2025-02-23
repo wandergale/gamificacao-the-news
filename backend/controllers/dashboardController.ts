@@ -45,11 +45,11 @@ export const getFilteredStats = async (req: Request, res: Response) => {
     WHERE 1=1
   `;
 
-  const params = [];
+  const params: any[] = [];
   let index = 1;
 
   if (startDate && endDate) {
-    query += ` AND streaks.last_read BETWEEN $${index} AND $${index + 1}`;
+    query += ` AND streaks.last_read::DATE BETWEEN $${index} AND $${index + 1}`;
     params.push(startDate, endDate);
     index += 2;
   }
@@ -57,7 +57,7 @@ export const getFilteredStats = async (req: Request, res: Response) => {
   if (streakStatus === "active") {
     query += ` AND streaks.current_streak > 0`;
   } else if (streakStatus === "inactive") {
-    query += ` AND (streaks.current_streak = 0 OR streaks.last_read < NOW() - INTERVAL '1 day')`;
+    query += ` AND (streaks.current_streak = 0 OR streaks.last_read::DATE < CURRENT_DATE - INTERVAL '1 day')`;
   }
 
   try {
@@ -65,6 +65,6 @@ export const getFilteredStats = async (req: Request, res: Response) => {
     res.json(filteredStats.rows);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro on filtering" });
+    res.status(500).json({ error: "Erro ao filtrar dados" });
   }
 };
