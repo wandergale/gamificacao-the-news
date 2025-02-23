@@ -1,24 +1,19 @@
 import styles from "./Modal.module.css";
 import close from "../assets/images/close.svg";
 
-import dotenv from "dotenv";
 import { useState } from "react";
-
-dotenv.config();
 
 const Modal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   // const [message, setMessage] = useState("");
   const [loginLink, setLoginLink] = useState("");
 
-  const apiUrl = process.env.REACT_APP_API_URL;
-
   if (!isOpen) return null;
 
   const handleSubmit = async () => {
     try {
       const res = await fetch(
-        `${apiUrl}/send-login-link`,
+        `https://the-news-2a20.onrender.com/send-login-link`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
