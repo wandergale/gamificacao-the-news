@@ -143,6 +143,6 @@ label {
 
 @media (max-width: 992px) {
   .general_metrics {
-    width: 90%;
+    width: 500px;
   }
 }
