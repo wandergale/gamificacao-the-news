@@ -150,6 +150,7 @@ label {
 @media (max-width: 580px) {
   .container {
     padding: 0;
+    min-height: 110vh;
   }
 
   #painel {
@@ -171,5 +172,9 @@ label {
 
   .filter_stats {
     max-width: 300px;
+  }
+
+  .btn_filter:hover {
+    transform: none;
   }
 }
