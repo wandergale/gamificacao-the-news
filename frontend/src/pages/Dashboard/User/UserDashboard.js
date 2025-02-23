@@ -59,40 +59,46 @@ const UserDashboard = () => {
       />
       <h2>Sua Jornada de Leitura</h2>
       <p className={style.progres}>Acompanhe seu progresso diário</p>
-
-      <div className={style.stats}>
-        <div className={style.card}>
-          <div className={style.currentStreak}>
-            <p className={style.emoji}>🌱</p>
-            <p>{streak.current_streak}</p>
-          </div>
-          <span>Dias Seguidos</span>
-        </div>
-
-        <div className={style.card}>
-          <div className={style.currentStreak}>
-            <p className={style.emoji}>🏆</p>
-            <p>{streak.longest_streak}</p>
-          </div>
-          <span>Dias Seguidos</span>
-        </div>
-      </div>
-
-      <div className={style.weeklyProgress}>
-        <h3>Progresso da Semana</h3>
-        <div className={style.week}>
-          {weekDays.map((day, index) => (
-            <div
-              key={index}
-              className={`${style.dayBox} ${
-                streakHistory[index] ? style.active : ""
-              }`}
-            >
-              {day}
+      {streak && streak ? (
+        <div className={style.stats}>
+          <div className={style.card}>
+            <div className={style.currentStreak}>
+              <p className={style.emoji}>🌱</p>
+              <p>{streak.current_streak}</p>
             </div>
-          ))}
+            <span>Dias Seguidos</span>
+          </div>
+
+          <div className={style.card}>
+            <div className={style.currentStreak}>
+              <p className={style.emoji}>🏆</p>
+              <p>{streak.longest_streak}</p>
+            </div>
+            <span>Dias Seguidos</span>
+          </div>
         </div>
-      </div>
+      ) : (
+        <p>Carregando streaks</p>
+      )}
+      {streakHistory && streakHistory ? (
+        <div className={style.weeklyProgress}>
+          <h3>Progresso da Semana</h3>
+          <div className={style.week}>
+            {weekDays.map((day, index) => (
+              <div
+                key={index}
+                className={`${style.dayBox} ${
+                  streakHistory[index] ? style.active : ""
+                }`}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <p>Carregando streak history </p>
+      )}
       <p className={style.cont}>
         Continue entrando diariamente para aumentar seu streak!
       </p>
