@@ -48,47 +48,59 @@ const UserDashboard = () => {
   if (!user) {
     return <p>Carregando...</p>;
   }
-  // const streak = {
-  //   current_streak: 1,
-  //   longest_streak: 4,
-  // };
+
+  const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
 
   return (
     <div className={style.container}>
-      {/* <h2>ola, {user.email}</h2> */}
       <img
-        className={style.logo_img}
         src="https://app.thenewscc.com.br/thenews.webp"
-        alt="logo"
+        alt="logo the news"
       />
-      <h2>Sua jornada de Leitura</h2>
-      <p className={style.prog}>Acompanhe seu progresso diário</p>
-      {streak ? (
-        <div className={style.container}>
-          <p>Streak Atual: {streak.current_streak} dias</p>
-          <p>Maior Streak: {streak.longest_streak}</p>
-           {/* leituras */}
-           <h3>Histórico de leituras:</h3>
-          <ul>
-            {streakHistory.length > 0 ? (
-              streakHistory.map((entry, index) => (
-                <li key={index}>{new Date(entry.read_date).toLocaleDateString()}</li>
-              ))
-            ) : (
-              <p>Nenhum histórico encontrado.</p>
-            )}
-          </ul>
+      <h2>Sua Jornada de Leitura</h2>
+      <p className={style.progres}>Acompanhe seu progresso diário</p>
 
-          <p>Continue entrando diariamente para aumentar seu streak!</p>
-          <div className={style.btn_wrapper}>
-            <div className={style.btn}>
-              <button onClick={<Navigate to="/" />}>Continuar Lendo</button>
-            </div>
+      <div className={style.stats}>
+        <div className={style.card}>
+          <div className={style.currentStreak}>
+            <p className={style.emoji}>🌱</p>
+            <p>{streak.current_streak}</p>
           </div>
+          <span>Dias Seguidos</span>
         </div>
-      ) : (
-        <p>Carregando streak...</p>
-      )}
+
+        <div className={style.card}>
+          <div className={style.currentStreak}>
+            <p className={style.emoji}>🏆</p>
+            <p>{streak.longest_streak}</p>
+          </div>
+          <span>Dias Seguidos</span>
+        </div>
+      </div>
+
+      <div className={style.weeklyProgress}>
+        <h3>Progresso da Semana</h3>
+        <div className={style.week}>
+          {weekDays.map((day, index) => (
+            <div
+              key={index}
+              className={`${style.dayBox} ${
+                streakHistory[index] ? style.active : ""
+              }`}
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+      </div>
+      <p className={style.cont}>
+        Continue entrando diariamente para aumentar seu streak!
+      </p>
+      <div className={style.btn_wrapper}>
+        <div className={style.btn}>
+          <button onClick={<Navigate to="/" />}>Continuar Lendo</button>
+        </div>
+      </div>
     </div>
   );
 };
