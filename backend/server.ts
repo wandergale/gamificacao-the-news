@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://the-news-bice.vercel.app",
+    origin: process.env.FRONTEND_URL,
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
   })
@@ -21,6 +21,5 @@ app.use(express.json());
 app.use(routes);
 
 app.listen(PORT, () => console.log(`Server rodando na porta ${PORT}`));
-
 
 export default app; // tests
