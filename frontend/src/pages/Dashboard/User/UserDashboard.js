@@ -42,8 +42,9 @@ const UserDashboard = () => {
       })
       .then(([streakData, historyData]) => {
         setStreak(streakData);
+        console.log(historyData)
         setStreakHistory(historyData);
-        console.log(streakHistory)
+        // console.log(streakHistory)
       })
       .catch((error) => console.error("Erro:", error));
   }, []);
