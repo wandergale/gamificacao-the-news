@@ -92,7 +92,7 @@ const UserDashboard = () => {
                   <div
                     key={index}
                     className={`${style.dayBox} ${
-                      (console.log(streakHistory.history.read_date),
+                      (console.log(streakHistory.history),
                       streakHistory.history[index] ? style.active : "")
                     }`}
                   >
