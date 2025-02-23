@@ -88,17 +88,23 @@ const UserDashboard = () => {
             <div className={style.weeklyProgress}>
               <h3>Progresso da Semana</h3>
               <div className={style.week}>
-                {weekDays.map((day, index) => (
-                  <div
-                    key={index}
-                    className={`${style.dayBox} ${
-                      (console.log(streakHistory.history[index][0]),
-                      streakHistory.history[index] ? style.active : "")
-                    }`}
-                  >
-                    {day}
-                  </div>
-                ))}
+                {weekDays.map((day, index) => {
+                  // Converter read_date para indice da semana
+                  const readDays = streakHistory.history.map((entry) =>
+                    new Date(entry.read_date).getDay()
+                  );
+
+                  return (
+                    <div
+                      key={index}
+                      className={`${style.dayBox} ${
+                        readDays.includes(index) ? style.active : ""
+                      }`}
+                    >
+                      {day}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
