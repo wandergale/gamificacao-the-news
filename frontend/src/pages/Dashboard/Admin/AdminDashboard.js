@@ -93,7 +93,6 @@ const AdminDashboard = () => {
           type="date"
           onChange={(e) => setEndDate(e.target.value)}
         />
-        <label>Status:</label>
         <select onChange={(e) => setStreakStatus(e.target.value)}>
           <option value="">Todos</option>
           <option value="active">Ativos</option>
