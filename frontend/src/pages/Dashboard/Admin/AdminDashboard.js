@@ -1,4 +1,4 @@
-import style from "./AdminDashboard/module.css";
+import style from "./AdminDashboard.module.css";
 
 import { useEffect, useState } from "react";
 
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("DADOS RECEBIDOS: ",data)
+        console.log("DADOS RECEBIDOS: ", data);
         setStats(data);
       })
       .catch(console.error);
