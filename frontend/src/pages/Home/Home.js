@@ -3,16 +3,20 @@ import Navbar from "../../components/Navbar";
 import Modal from "../../components/Modal";
 import mailIcon from "../../assets/images/mail.svg";
 
+import dotenv from 'dotenv'
 import { useState } from "react";
+
+dotenv.config();
 
 const Home = () => {
   const [email, setEmail] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`https://the-news-2a20.onrender.com/create/?email=${email}`)
+    fetch(`${apiUrl}/create/?email=${email}`)
       .then(() => {
         // console.log(res.status);
         setEmail("");

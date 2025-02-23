@@ -2,6 +2,9 @@ import style from "./UserDashboard.module.css";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -9,6 +12,7 @@ const UserDashboard = () => {
   const [user, setUser] = useState(null);
   const [streak, setStreak] = useState(null);
   const [streakHistory, setStreakHistory] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -17,7 +21,7 @@ const UserDashboard = () => {
       console.log("token not found");
     }
 
-    fetch(`https://the-news-2a20.onrender.com/auth?token=${token}`)
+    fetch(`${apiUrl}/auth?token=${token}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error("User not found");
@@ -28,12 +32,12 @@ const UserDashboard = () => {
         if (data.user) {
           setUser(data.user);
           return Promise.all([
-            fetch(
-              `https://the-news-2a20.onrender.com/streaks?userId=${data.user.id}`
-            ).then((res) => res.json()),
-            fetch(
-              `https://the-news-2a20.onrender.com/streak-history?userId=${data.user.id}`
-            ).then((res) => res.json()),
+            fetch(`${apiUrl}/streaks?userId=${data.user.id}`).then((res) =>
+              res.json()
+            ),
+            fetch(`${apiUrl}/streak-history?userId=${data.user.id}`).then(
+              (res) => res.json()
+            ),
           ]);
         } else {
           throw new Error("User not found");

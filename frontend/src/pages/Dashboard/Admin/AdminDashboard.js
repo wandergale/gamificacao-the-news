@@ -1,6 +1,7 @@
 import style from "./AdminDashboard.module.css";
 
 import { useEffect, useState } from "react";
+import dotenv from 'dotenv'
 
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
@@ -9,16 +10,17 @@ const AdminDashboard = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [streakStatus, setStreakStatus] = useState("");
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    fetch("https://the-news-2a20.onrender.com/admin/stats")
+    fetch(`${apiUrl}/admin/stats`)
       .then((res) => res.json())
       .then(setStats)
       .catch(console.error);
   }, []);
 
   useEffect(() => {
-    fetch("https://the-news-2a20.onrender.com/admin/ranking")
+    fetch(`${apiUrl}/admin/ranking`)
       .then((res) => res.json())
       .then(setRanking)
       .catch(console.error);
@@ -26,7 +28,7 @@ const AdminDashboard = () => {
 
   const handleFilter = () => {
     fetch(
-      `https://the-news-2a20.onrender.com/admin/stats/filter?startDate=${startDate}&endDate=${endDate}&streakStatus=${streakStatus}`
+      `${apiUrl}/admin/stats/filter?startDate=${startDate}&endDate=${endDate}&streakStatus=${streakStatus}`
     )
       .then((res) => res.json())
       .then((data) => {

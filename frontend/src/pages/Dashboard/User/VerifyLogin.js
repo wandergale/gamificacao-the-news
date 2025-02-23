@@ -1,8 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export const VerifyLogin = () => {
   const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -19,7 +23,7 @@ export const VerifyLogin = () => {
   const verifyToken = async (token) => {
     try {
       const res = await fetch(
-        `https://the-news-2a20.onrender.com/auth?token=${token}`,
+        `${apiUrl}/auth?token=${token}`,
         {
           method: "GET",
           headers: {
