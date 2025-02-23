@@ -149,7 +149,7 @@ label {
 
 @media (max-width: 580px) {
   .general_metrics {
-    max-width: 350px;
+    max-width: 300px;
   }
 
   .general_metrics h3,
@@ -158,6 +158,6 @@ label {
   }
 
   .top_readers {
-    max-width: 350px;
+    max-width: 300px;
   }
 }
