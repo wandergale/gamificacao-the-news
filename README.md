@@ -4,8 +4,9 @@
 Deploy do projeto - (https://the-news-bice.vercel.app/) -- (https://the-news-2a20.onrender.com)
 
 </br>
-BACKEND <br/>
-* Criar um banco de dados postgreSQL e rodar o SQL: <br />
+> BACKEND <br/ >
+* Criar um banco de dados postgreSQL e rodar o SQL:
+
 ```
         CREATE TABLE IF NOT EXISTS users (
           id SERIAL PRIMARY KEY,
@@ -50,6 +51,7 @@ BACKEND <br/>
       );
       UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@gmail.com';
 ```
+
 Se for rodar localmente precisa alterar o arquivo `config/db.ts`
 ```
   import { Pool } from "pg";
