@@ -1,7 +1,8 @@
 # Case - Gamificação the news
 
 ## instruções para rodar projeto
-Deploy do projeto - (https://the-news-bice.vercel.app/) -- (https://the-news-2a20.onrender.com)
+Deploy do projeto - (https://the-news-bice.vercel.app/) -- (https://the-news-2a20.onrender.com) <br />
+Webhook: https://the-news-2a20.onrender.com/webhook?email=wandersongamer2@gmail.com
 
 </br>
 > BACKEND <br/ >
