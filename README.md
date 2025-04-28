@@ -1,77 +1,69 @@
-# Case - Gamificação the news
+# 📚 The News - Gamificação
 
-## instruções para rodar projeto
-Deploy do projeto - (https://the-news-bice.vercel.app/) -- (https://the-news-2a20.onrender.com) <br />
-Webhook: https://the-news-2a20.onrender.com/webhook?email=wandersongamer2@gmail.com
+Projeto fullstack para gamificação da newsletter **The News**, incentivando o engajamento dos leitores através de sistema de streaks e estatísticas personalizadas.
 
-</br>
-> BACKEND <br/ >
-* Criar um banco de dados postgreSQL e rodar o SQL:
+## 🚀 Tecnologias
 
+- **Frontend**: React.js (JavaScript)
+- **Backend**: Node.js, TypeScript, Express
+- **Banco de Dados**: PostgreSQL
+- **Hospedagem**: Vercel (Frontend), Render (Backend)
+- **Outros**: Webhooks da Beehiiv, JWT para autenticação
+
+## 🎯 Funcionalidades
+
+- Área logada para leitores:
+  - Visualizar streaks de leitura.
+  - Acompanhar estatísticas de engajamento.
+- Dashboard administrativo:
+  - Análise de métricas de leitura.
+  - Visualização de dados de UTM.
+- Integração via Webhook com a plataforma Beehiiv para atualização de leituras.
+
+## 🛠️ Como rodar o projeto localmente
+
+### Pré-requisitos
+
+- Node.js
+- PostgreSQL
+- npm ou yarn
+
+### Instalação
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/seu-usuario/the-news-gamificacao.git
 ```
-        CREATE TABLE IF NOT EXISTS users (
-          id SERIAL PRIMARY KEY,
-          email TEXT UNIQUE NOT NULL,
-          created_at TIMESTAMP DEFAULT NOW(),
-          is_admin BOOLEAN DEFAULT FALSE
-        );
-      CREATE TABLE IF NOT EXISTS reads (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-        post_id TEXT NOT NULL,
-        read_at TIMESTAMP DEFAULT NOW()
-      );
-      CREATE TABLE IF NOT EXISTS streaks (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER UNIQUE REFERENCES users(id) ON DELETE CASCADE,
-        current_streak INTEGER DEFAULT 0,
-        longest_streak INTEGER DEFAULT 0,
-        last_read TIMESTAMP
-      );  
-      CREATE TABLE IF NOT EXISTS utm_data (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-        utm_source TEXT,
-        utm_medium TEXT,
-        utm_campaign TEXT,
-        utm_channel TEXT
-      );
-      DROP VIEW IF EXISTS engagement_metrics;
-      CREATE VIEW engagement_metrics AS
-      SELECT 
-        COUNT(DISTINCT user_id) AS total_usuarios_ativos,
-        AVG(current_streak) AS media_streaks,
-        COUNT(*) FILTER (WHERE current_streak > 1) AS usuarios_com_streak
-      FROM streaks;
-      CREATE TABLE IF NOT EXISTS streak_history (
-        id SERIAL PRIMARY KEY,
-        user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-        read_date DATE NOT NULL,
-        streak_value INTEGER NOT NULL,
-        UNIQUE(user_id, read_date)
-      );
-      UPDATE users SET is_admin = TRUE WHERE email = 'wanderAdmin@gmail.com';
+2. instale as dependências:
+```bash
+# No frontend
+cd frontend
+npm install
+
+# No backend
+cd ../backend
+npm install
 ```
-
-Se for rodar localmente precisa alterar o arquivo `config/db.ts`
+3. Configure as variáveis de ambiente:
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/the_news
+JWT_SECRET=sua_chave_secreta
+BEEHIIV_WEBHOOK_SECRET=sua_chave_webhook
 ```
-  import { Pool } from "pg";
-  import dotenv from "dotenv"; 
-
-  dotenv.config();
-
-  const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-  });
-
-  export default pool;
+4. Rode as aplicações:
+```bash
+# No backend
+cd backend
+npm run dev
+#-------------
+# No frontend
+cd frontend
+npm start
 ```
-So isso é o suficiente pra rodar.
-<br/>
-agora criar o arquivo .env com: 
-`DATABASE_URL`, `PORT`, `JWT_SECRET` e `FRONTEND_URL` <br />
- e agora é so instalar as dependencias `npm i` e rodar o backend com `npm run start` <br />
-<br/>
-FRONTEND <br />
-Criar um arquivo .env e colocar `REACT_APP_API_URL` ou colocar diretamente o link da api<br />
-Agora so dar o `npm i` e rodar o projeto `npm run start`
+## 🌐 Deploy
+Frontend: Vercel - [Link do projeto](https://the-news-bice.vercel.app/) <br/>
+Backend: Renden - Aqui fica a sua API
+## 👨‍💻 Autor
+**Wanderson Oliveira** <br/>
+**[Linkedin](https://www.linkedin.com/in/wandergale/)**
